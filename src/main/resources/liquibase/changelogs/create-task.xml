@@ -8,7 +8,9 @@
             <column name="id" type="uuid">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="text"/>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
             <column name="description" type="text"/>
             <column name="completed" type="boolean" defaultValueBoolean="false"/>
         </createTable>

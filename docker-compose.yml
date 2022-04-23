@@ -7,4 +7,6 @@ services:
     volumes:
       - "~/dashboard-backend/postgres:/var/lib/postgresql/data"
     environment:
+      - "POSTGRES_DB=dashboard"
+      - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
