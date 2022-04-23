@@ -1,3 +1,6 @@
-compile and run without bootRun
-add docker for db and other services
-add testcontainers
+1. add postgres and liquibase (or equivalent)
+    1.1. add liquibase to startup
+2. make task repository work (crud) with postgres
+3. compile and run without bootRun
+4. add testcontainers
+5. write down what IO is happening (database, endpoints, http clients etc)

@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  database:
+    image: "postgres:14.2-alpine3.15"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "~/dashboard-backend/postgres:/var/lib/postgresql/data"
+    environment:
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
