@@ -1,0 +1,24 @@
+### first
+POST http://localhost:8080/task
+Content-Type: application/json
+
+{
+  "name": "First task"
+}
+
+###
+POST http://localhost:8080/task/update
+Content-Type: application/json
+
+{
+  "id": "b7735216-71c4-48a1-acfb-0a1dc62b58a7",
+  "name": "First task",
+  "description": "Something new new",
+  "completed": false
+}
+
+###
+GET http://localhost:8080/task
+
+###
+DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e

@@ -1,11 +1,11 @@
 package com.milosgarunovic.dashboard.domain
 
-import java.util.UUID
+import java.util.*
 
 data class Task(
     val id: String = UUID.randomUUID().toString(),
     val name: String,
-    val description: String?,
+    val description: String? = null,
     val completed: Boolean = false,
 //    val active: Boolean = true,
 //    val tags: List<String>?,

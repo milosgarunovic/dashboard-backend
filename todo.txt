@@ -1,6 +1,6 @@
-1. add postgres and liquibase (or equivalent)
-    1.1. add liquibase to startup
-2. make task repository work (crud) with postgres
-3. compile and run without bootRun
-4. add testcontainers
-5. write down what IO is happening (database, endpoints, http clients etc)
+1. make task repository work (crud) with postgres
+2. compile and run without bootRun
+3. add testcontainers
+4. write down what IO is happening (database, endpoints, http clients etc)
+5. keep properties off of project, add only default ones so it can run by default when somebody
+    downloads the project
