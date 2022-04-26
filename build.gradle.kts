@@ -20,6 +20,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.2")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10")
+    implementation("org.springframework.boot:spring-boot-starter-security:2.6.7")
 
 //  database
     implementation("org.liquibase:liquibase-core:4.9.1")

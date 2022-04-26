@@ -5,7 +5,7 @@ import com.milosgarunovic.dashboard.repository.TaskRepositoryImpl
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(("/task"))
+@RequestMapping("/task")
 class TaskController(val taskRepositoryImpl: TaskRepositoryImpl) {
 
     @GetMapping

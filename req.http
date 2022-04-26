@@ -22,3 +22,13 @@ GET http://localhost:8080/task
 
 ###
 DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e
+
+###
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "email": "test@gmail.com",
+  "password": "password123"
+}
