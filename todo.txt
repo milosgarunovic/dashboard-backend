@@ -6,3 +6,8 @@
 6. jwt
 7. logging req/res
 8. migrate to Spring WebFlux (with coroutines)
+9. monitoring
+10. deployment
+11. graceful shutdown
+12. request timeout
+13. qodona

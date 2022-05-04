@@ -16,21 +16,20 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web:2.6.6")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.6.7")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.2")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10")
-    implementation("org.springframework.boot:spring-boot-starter-security:2.6.7")
 
 //  database
     implementation("org.liquibase:liquibase-core:4.9.1")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc:2.6.6")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc:2.6.7")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.6")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.7")
 
-    runtimeOnly("org.postgresql:postgresql:42.3.3")
+    runtimeOnly("org.postgresql:postgresql:42.3.4")
 }
 
 tasks.withType<KotlinCompile> {
