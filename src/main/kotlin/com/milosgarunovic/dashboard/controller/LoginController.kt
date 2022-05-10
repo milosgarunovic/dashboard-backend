@@ -1,7 +1,7 @@
 package com.milosgarunovic.dashboard.controller
 
 import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
-import com.milosgarunovic.dashboard.security.JwtSupport
+import com.milosgarunovic.dashboard.spring.security.JwtSupport
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -16,14 +16,16 @@ class LoginController(
     val jwtSupport: JwtSupport
 ) {
 
-    @PostMapping("/login")
-    fun login(@RequestBody login: Map<String, String>): ResponseEntity<Jwt> {
-        val user = userRepositoryImpl.getByUsernameOrEmail(login["username"]!!)
+    @PostMapping("/login", consumes = ["application/json"], produces = ["application/json"])
+    fun login(@RequestBody login: Map<String, String>): ResponseEntity<Map<String, String>> {
+        val username = login["username"]!!
+        val user = userRepositoryImpl.getByUsernameOrEmail(username)
 
         user?.let {
             if (passwordEncoder.matches(login["password"], user.password)) {
-                val token = jwtSupport.generate(login["username"]!!).value
-                return ResponseEntity(Jwt(token), HttpStatus.OK)
+                val token = jwtSupport.generateToken(username)
+                val refreshToken = jwtSupport.generateRefreshToken(username)
+                return ResponseEntity(mapOf("token" to token, "refreshToken" to refreshToken), HttpStatus.OK)
             }
         }
 
@@ -31,5 +33,3 @@ class LoginController(
     }
 
 }
-
-data class Jwt(val token: String)

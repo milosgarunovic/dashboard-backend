@@ -19,6 +19,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/task
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyMjE3NTU5LCJleHAiOjE2NTIyMTc3Mzl9.-2Rbkpe1Gg3qTTHYFibIGI6NufQpzMkyenH6DCUxpVI
 
 ###
 DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e
@@ -33,7 +34,7 @@ Content-Type: application/json
   "password": "password123"
 }
 
-###
+### Login
 POST http://localhost:8080/login
 Content-Type: application/json
 
