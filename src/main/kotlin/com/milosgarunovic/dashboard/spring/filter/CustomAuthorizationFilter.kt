@@ -35,7 +35,7 @@ class CustomAuthorizationFilter(
             val user = userRepo.getByUsernameOrEmail(username)
             if (jwtSupport.isValid(token, user)) {
                 SecurityContextHolder.getContext().authentication =
-                    UsernamePasswordAuthenticationToken(username, user!!.password, listOf(SimpleGrantedAuthority("ROLE_USER")))
+                    UsernamePasswordAuthenticationToken(username, user!!.password, listOf(SimpleGrantedAuthority("USER")))
             } else {
                 response.sendError(HttpStatus.FORBIDDEN.value())
                 return

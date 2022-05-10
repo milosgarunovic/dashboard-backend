@@ -5,6 +5,7 @@ import com.milosgarunovic.dashboard.spring.filter.CustomAuthorizationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.core.GrantedAuthorityDefaults
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
@@ -28,12 +29,15 @@ class SecurityConfig(
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
+    /**
+     * Instead of using the default user from spring, here we tell spring to use database as a source for users
+     */
     @Bean
     fun userDetailsService(userRepo: UserRepositoryImpl): UserDetailsService {
         return UserDetailsService { username: String ->
             val user = userRepo.getByUsernameOrEmail(username)
             if (user != null) {
-                User(user.username, user.password, listOf(SimpleGrantedAuthority("ROLE_USER")))
+                User(user.username, user.password, listOf(SimpleGrantedAuthority("USER")))
             } else {
                 throw UsernameNotFoundException("User '$username' not found")
             }
@@ -74,4 +78,11 @@ class SecurityConfig(
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
     }
+
+    /**
+     * Removes the ROLE_ prefix in Spring Security
+     * https://stackoverflow.com/a/43964633
+     */
+    @Bean
+    fun grantedAuthorityDefaults(): GrantedAuthorityDefaults = GrantedAuthorityDefaults("")
 }
