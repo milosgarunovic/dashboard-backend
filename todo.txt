@@ -3,11 +3,11 @@
 4. write down what IO is happening (database, endpoints, http clients etc)
 5. keep properties off of project, add only default ones so it can run by default when somebody
     downloads the project
-6. jwt
+6. external and default config
 7. logging req/res
 8. migrate to Spring WebFlux (with coroutines)
 9. monitoring
-10. deployment
+10. deployment - docker (jib)
 11. graceful shutdown
 12. request timeout
 13. qodona

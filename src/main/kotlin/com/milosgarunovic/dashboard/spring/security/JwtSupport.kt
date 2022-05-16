@@ -13,10 +13,13 @@ import java.util.*
 class JwtSupport(
     private val userRepo: UserRepositoryImpl
 ) {
-    private val key = Keys.hmacShaKeyFor("65c31aab-d804-46c3-bce5-b6086c5a0832".toByteArray())
-    private val parser = Jwts.parserBuilder().setSigningKey(key).build()
 
-    fun generateToken(username: String): String {
+    // TODO move key to config?
+    val key = "65c31aab-d804-46c3-bce5-b6086c5a0832"
+    private val secretKey = Keys.hmacShaKeyFor(key.toByteArray())
+    private val parser = Jwts.parserBuilder().setSigningKey(secretKey).build()
+
+    fun generateAccessToken(username: String): String {
         val expiration: Date = Date.from(Instant.now().plus(3, ChronoUnit.MINUTES))
         // TODO add roles
         return generate(username, expiration)
@@ -32,7 +35,7 @@ class JwtSupport(
             .setSubject(username)
             .setIssuedAt(Date.from(Instant.now()))
             .setExpiration(expiration)
-            .signWith(key)
+            .signWith(secretKey)
         return builder.compact()
     }
 

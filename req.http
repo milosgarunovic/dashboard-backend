@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/task
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyMjE3NTU5LCJleHAiOjE2NTIyMTc3Mzl9.-2Rbkpe1Gg3qTTHYFibIGI6NufQpzMkyenH6DCUxpVI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyNzM4OTExLCJleHAiOjE2NTI3MzkwOTF9.7y3XP03WE1gNVhUe63_g56moyuRw0LSsH4E1zInlSek
 
 ###
 DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e
