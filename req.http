@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/task
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyNzM4OTExLCJleHAiOjE2NTI3MzkwOTF9.7y3XP03WE1gNVhUe63_g56moyuRw0LSsH4E1zInlSek
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyOTEzNDg0LCJleHAiOjE2NTI5MTM2NjR9.uW5XUTBXSoA60PvsPWHI5zhJV7QJwMaHGpKHm_aScr8
 
 ###
 DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e
@@ -42,3 +42,7 @@ Content-Type: application/json
   "username": "test",
   "password": "password123"
 }
+
+###
+GET http://localhost:8080/refreshToken
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyOTEzMzk3LCJleHAiOjE2NTQxMjI5OTd9.wtoMFpZS-_oaf495dIyuRv3UuY7k_RK_zI81Au5DPGY

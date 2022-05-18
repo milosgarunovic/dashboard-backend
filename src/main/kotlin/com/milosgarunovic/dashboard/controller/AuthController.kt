@@ -35,8 +35,16 @@ class AuthController(
         return ResponseEntity(null, HttpStatus.UNAUTHORIZED)
     }
 
-    @GetMapping("/refreshToken")
-    fun refreshToken(@RequestHeader(HttpHeaders.AUTHORIZATION) refreshToken: String) {
-
+    @GetMapping("/refreshToken", produces = ["application/json"])
+    fun refreshToken(@RequestHeader(HttpHeaders.AUTHORIZATION) refreshToken: String): ResponseEntity<Map<String, String>> {
+        if (refreshToken.startsWith("Bearer ")) {
+            val tokenWithoutBearer = refreshToken.substring("Bearer ".length)
+            val username = jwtSupport.getUsername(tokenWithoutBearer)
+            if (jwtSupport.isValid(tokenWithoutBearer)) {
+                val accessToken = jwtSupport.generateAccessToken(username)
+                return ResponseEntity(mapOf("accessToken" to accessToken), HttpStatus.OK)
+            }
+        }
+        return ResponseEntity(null, HttpStatus.UNAUTHORIZED)
     }
 }

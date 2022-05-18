@@ -22,7 +22,8 @@ class CustomAuthorizationFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        if (request.servletPath == "/login") {
+        val path = request.servletPath
+        if (path == "/login" || path == "/refreshToken") {
             filterChain.doFilter(request, response)
             return
         }
