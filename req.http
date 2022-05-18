@@ -1,4 +1,4 @@
-### first
+### add task
 POST http://localhost:8080/task
 Content-Type: application/json
 
@@ -6,7 +6,7 @@ Content-Type: application/json
   "name": "First task"
 }
 
-###
+### update task
 POST http://localhost:8080/task/update
 Content-Type: application/json
 
@@ -17,14 +17,14 @@ Content-Type: application/json
   "completed": false
 }
 
-###
+### get all tasks
 GET http://localhost:8080/task
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyOTEzNDg0LCJleHAiOjE2NTI5MTM2NjR9.uW5XUTBXSoA60PvsPWHI5zhJV7QJwMaHGpKHm_aScr8
 
-###
+### delete task
 DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e
 
-###
+### register user
 POST http://localhost:8080/user/register
 Content-Type: application/json
 
@@ -34,7 +34,7 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### Login
+### login
 POST http://localhost:8080/login
 Content-Type: application/json
 
@@ -43,6 +43,6 @@ Content-Type: application/json
   "password": "password123"
 }
 
-###
+### refreshToken
 GET http://localhost:8080/refreshToken
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyOTEzMzk3LCJleHAiOjE2NTQxMjI5OTd9.wtoMFpZS-_oaf495dIyuRv3UuY7k_RK_zI81Au5DPGY
