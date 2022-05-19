@@ -1,35 +1,21 @@
 package com.milosgarunovic.dashboard.controller
 
-import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
-import com.milosgarunovic.dashboard.spring.security.JwtSupport
+import com.milosgarunovic.dashboard.spring.config.AuthService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestHeader
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class AuthController(
-    val userRepositoryImpl: UserRepositoryImpl,
-    val passwordEncoder: PasswordEncoder,
-    val jwtSupport: JwtSupport
+    val authService: AuthService,
 ) {
 
     @PostMapping("/login", consumes = ["application/json"], produces = ["application/json"])
     fun login(@RequestBody login: Map<String, String>): ResponseEntity<Map<String, String>> {
-        val username = login["username"]!!
-        val user = userRepositoryImpl.getByUsernameOrEmail(username)
-
-        user?.let {
-            if (passwordEncoder.matches(login["password"], user.password)) {
-                val token = jwtSupport.generateAccessToken(username)
-                val refreshToken = jwtSupport.generateRefreshToken(username)
-                return ResponseEntity(mapOf("accessToken" to token, "refreshToken" to refreshToken), HttpStatus.OK)
-            }
+        val loginInfo = authService.login(login["username"]!!, login["password"]!!)
+        if (loginInfo != null) {
+            return ResponseEntity(loginInfo, HttpStatus.OK)
         }
 
         return ResponseEntity(null, HttpStatus.UNAUTHORIZED)
@@ -37,13 +23,9 @@ class AuthController(
 
     @GetMapping("/refreshToken", produces = ["application/json"])
     fun refreshToken(@RequestHeader(HttpHeaders.AUTHORIZATION) refreshToken: String): ResponseEntity<Map<String, String>> {
-        if (refreshToken.startsWith("Bearer ")) {
-            val tokenWithoutBearer = refreshToken.substring("Bearer ".length)
-            val username = jwtSupport.getUsername(tokenWithoutBearer)
-            if (jwtSupport.isValid(tokenWithoutBearer)) {
-                val accessToken = jwtSupport.generateAccessToken(username)
-                return ResponseEntity(mapOf("accessToken" to accessToken), HttpStatus.OK)
-            }
+        val newAccessToken = authService.refreshToken(refreshToken)
+        if (newAccessToken != null) {
+            return ResponseEntity(newAccessToken, HttpStatus.OK)
         }
         return ResponseEntity(null, HttpStatus.UNAUTHORIZED)
     }
