@@ -36,13 +36,13 @@ open class CustomLoggingReqResFilter : OncePerRequestFilter() {
             userLogInfo = " user=[${principal}@${request.remoteAddr}];"
         }
 
-        logger.info("REQ id=[$reqId];${userLogInfo} url=[$uri]; method=[$method];")
+        logger.info("-> REQ id=[$reqId];${userLogInfo} url=[$uri]; method=[$method];")
         filterChain.doFilter(contentCachingRequestWrapper, contentCachingResponseWrapper)
 
         val elapsedRequestTime = (Clock.System.now() - requestStartTime).inWholeMilliseconds
         val status = contentCachingResponseWrapper.status
         val statusText = HttpStatus.valueOf(status).reasonPhrase
-        logger.info("RES id=[$reqId];${userLogInfo} url=[$uri]; method=[$method]; status=[$status $statusText]; Finished in ${elapsedRequestTime}ms;")
+        logger.info("<- RES id=[$reqId];${userLogInfo} url=[$uri]; method=[$method]; status=[$status $statusText]; elapsedTime=[${elapsedRequestTime}ms];")
 
         // must be after filter, because contentCachingRequestWrapper doesn't have anything cached if inputStream is
         // not called

@@ -9,6 +9,6 @@
 10. deployment - docker (jib)
 11. graceful shutdown
 12. request timeout
-13. qodona
+13. qodana
 14. JWT - how to distinct refresh token and access token, so refresh token can't be used for anything else
-        except /refreshToken
+        except /refreshToken. Maybe add separate refresh and access token keys?
