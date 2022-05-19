@@ -1,7 +1,6 @@
 package com.milosgarunovic.dashboard.spring.security
 
 import com.milosgarunovic.dashboard.domain.User
-import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
 import com.milosgarunovic.dashboard.service.UserService
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
@@ -16,7 +15,7 @@ class JwtSupport(
 ) {
 
     // TODO move key to config?
-    val key = "65c31aab-d804-46c3-bce5-b6086c5a0832"
+    private final val key = "65c31aab-d804-46c3-bce5-b6086c5a0832"
     private val secretKey = Keys.hmacShaKeyFor(key.toByteArray())
     private val parser = Jwts.parserBuilder().setSigningKey(secretKey).build()
 
