@@ -1,23 +1,23 @@
 package com.milosgarunovic.dashboard.controller
 
 import com.milosgarunovic.dashboard.domain.Task
-import com.milosgarunovic.dashboard.repository.TaskRepositoryImpl
+import com.milosgarunovic.dashboard.service.TaskService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/task")
-class TaskController(val taskRepositoryImpl: TaskRepositoryImpl) {
+class TaskController(val taskService: TaskService) {
 
     @GetMapping(produces = ["application/json"])
     fun getAll(): List<Task> {
-        return taskRepositoryImpl.getAll()
+        return taskService.getAll()
     }
 
     @GetMapping("/{id}", produces = ["application/json"])
     fun getById(@PathVariable id: String): ResponseEntity<Task> {
-        val task = taskRepositoryImpl.getById(id)
+        val task = taskService.getById(id)
         if (task != null) {
             return ResponseEntity(task, HttpStatus.OK)
         }
@@ -27,17 +27,17 @@ class TaskController(val taskRepositoryImpl: TaskRepositoryImpl) {
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
     @ResponseStatus(HttpStatus.CREATED)
     fun add(@RequestBody task: Task): Task {
-        return taskRepositoryImpl.add(task)
+        return taskService.add(task)
     }
 
     @PostMapping("/update", consumes = ["application/json"], produces = ["application/json"])
     fun update(@RequestBody task: Task): Task {
-        return taskRepositoryImpl.update(task)
+        return taskService.update(task)
     }
 
     @DeleteMapping("/{id}", produces = ["application/json"])
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: String) {
-        taskRepositoryImpl.delete(id)
+        taskService.delete(id)
     }
 }
