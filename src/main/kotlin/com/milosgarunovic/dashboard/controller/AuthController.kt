@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.controller
 
-import com.milosgarunovic.dashboard.spring.config.AuthService
+import com.milosgarunovic.dashboard.service.AuthService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

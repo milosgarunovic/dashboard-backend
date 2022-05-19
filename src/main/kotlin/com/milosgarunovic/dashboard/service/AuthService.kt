@@ -1,4 +1,4 @@
-package com.milosgarunovic.dashboard.spring.config
+package com.milosgarunovic.dashboard.service
 
 import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
 import com.milosgarunovic.dashboard.spring.security.JwtSupport
