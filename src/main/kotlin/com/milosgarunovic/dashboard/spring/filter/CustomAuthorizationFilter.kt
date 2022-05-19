@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.spring.filter
 
-import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
+import com.milosgarunovic.dashboard.service.UserService
 import com.milosgarunovic.dashboard.spring.security.JwtSupport
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.http.HttpStatus
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse
 
 class CustomAuthorizationFilter(
     private val jwtSupport: JwtSupport,
-    private val userRepo: UserRepositoryImpl
+    private val userService: UserService,
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
@@ -33,7 +33,7 @@ class CustomAuthorizationFilter(
         if (header != null && header.startsWith(bearer)) {
             val token = header.substring(bearer.length)
             val username = jwtSupport.getUsername(token)
-            val user = userRepo.getByUsernameOrEmail(username)
+            val user = userService.getByUsername(username)
             if (jwtSupport.isValid(token, user)) {
                 SecurityContextHolder.getContext().authentication =
                     UsernamePasswordAuthenticationToken(username, user!!.password, listOf(SimpleGrantedAuthority("USER")))

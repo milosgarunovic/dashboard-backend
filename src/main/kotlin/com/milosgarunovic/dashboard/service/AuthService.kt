@@ -1,19 +1,18 @@
 package com.milosgarunovic.dashboard.service
 
-import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
 import com.milosgarunovic.dashboard.spring.security.JwtSupport
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
 class AuthService(
-    val userRepositoryImpl: UserRepositoryImpl,
+    val userService: UserService,
     val passwordEncoder: PasswordEncoder,
     val jwtSupport: JwtSupport
 ) {
 
     fun login(username: String, password: String): Map<String, String>? {
-        val user = userRepositoryImpl.getByUsernameOrEmail(username)
+        val user = userService.getByUsername(username)
 
         user?.let {
             if (passwordEncoder.matches(password, user.password)) {

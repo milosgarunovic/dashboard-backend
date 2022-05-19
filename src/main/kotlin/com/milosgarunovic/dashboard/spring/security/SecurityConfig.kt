@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.spring.security
 
-import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
+import com.milosgarunovic.dashboard.service.UserService
 import com.milosgarunovic.dashboard.spring.filter.CustomAuthorizationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -23,7 +23,7 @@ import org.springframework.web.filter.CorsFilter
 @EnableWebSecurity
 class SecurityConfig(
     private val jwtSupport: JwtSupport,
-    private val userRepo: UserRepositoryImpl,
+    private val userService: UserService,
 ) {
 
     @Bean
@@ -33,9 +33,9 @@ class SecurityConfig(
      * Instead of using the default user from spring, here we tell spring to use database as a source for users
      */
     @Bean
-    fun userDetailsService(userRepo: UserRepositoryImpl): UserDetailsService {
+    fun userDetailsService(userService: UserService): UserDetailsService {
         return UserDetailsService { username: String ->
-            val user = userRepo.getByUsernameOrEmail(username)
+            val user = userService.getByUsername(username)
             if (user != null) {
                 User(user.username, user.password, listOf(SimpleGrantedAuthority("USER")))
             } else {
@@ -48,7 +48,7 @@ class SecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
             .addFilterBefore(
-                CustomAuthorizationFilter(jwtSupport, userRepo),
+                CustomAuthorizationFilter(jwtSupport, userService),
                 UsernamePasswordAuthenticationFilter::class.java
             )
             .authorizeRequests()

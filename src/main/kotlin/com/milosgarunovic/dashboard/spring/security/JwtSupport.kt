@@ -2,6 +2,7 @@ package com.milosgarunovic.dashboard.spring.security
 
 import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
+import com.milosgarunovic.dashboard.service.UserService
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
@@ -11,7 +12,7 @@ import java.util.*
 
 @Component
 class JwtSupport(
-    private val userRepo: UserRepositoryImpl
+    private val userService: UserService,
 ) {
 
     // TODO move key to config?
@@ -51,8 +52,7 @@ class JwtSupport(
         val username = getUsername(token)
 
         // check if user exists
-        // TODO optimize so it doesn't call db on every req
-        userRepo.getByUsernameOrEmail(username) ?: return false
+        userService.getByUsername(username) ?: return false
 
         // if user exists, check if the token hasn't expired
         return isExpired(token)
