@@ -32,9 +32,13 @@ class CustomAuthorizationFilter(
         val bearer = "Bearer "
         if (header != null && header.startsWith(bearer)) {
             val token = header.substring(bearer.length)
-            val username = jwtSupport.getUsername(token)
+            val username = jwtSupport.getUsernameFromAccessToken(token)
+            if (username == null) {
+                response.sendError(HttpStatus.FORBIDDEN.value())
+                return
+            }
             val user = userService.getByUsername(username)
-            if (jwtSupport.isValid(token, user)) {
+            if (jwtSupport.isAccessTokenValid(token, user)) {
                 SecurityContextHolder.getContext().authentication =
                     UsernamePasswordAuthenticationToken(username, user!!.password, listOf(SimpleGrantedAuthority("USER")))
             } else {

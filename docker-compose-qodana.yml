@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+
+  qodana:
+    profiles:
+      - "qodana"
+    image: "jetbrains/qodana-jvm-community:2022.1"
+    ports:
+      - "8081:8080"
+    volumes:
+      - ".:/data/project/"
+      - "./qodana:/data/results"
+    command:
+      - "--show-report"

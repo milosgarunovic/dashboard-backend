@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
+import javax.crypto.SecretKey
 
 @Component
 class JwtSupport(
@@ -15,50 +16,77 @@ class JwtSupport(
 ) {
 
     // TODO move key to config?
-    private final val key = "65c31aab-d804-46c3-bce5-b6086c5a0832"
-    private val secretKey = Keys.hmacShaKeyFor(key.toByteArray())
-    private val parser = Jwts.parserBuilder().setSigningKey(secretKey).build()
+    private final val accessTokenKey = "65c31aab-d804-46c3-bce5-b6086c5a0832"
+    private val accessTokenSecretKey = Keys.hmacShaKeyFor(accessTokenKey.toByteArray())
+    private val accessTokenParser = Jwts.parserBuilder().setSigningKey(accessTokenSecretKey).build()
+
+    private final val refreshTokenKey = "65c31aab-d804-46c3-bce5-b6086c5a0833"
+    private val refreshTokenSecretKey = Keys.hmacShaKeyFor(refreshTokenKey.toByteArray())
+    private val refreshTokenParser = Jwts.parserBuilder().setSigningKey(refreshTokenSecretKey).build()
 
     fun generateAccessToken(username: String): String {
         val expiration: Date = Date.from(Instant.now().plus(3, ChronoUnit.MINUTES))
         // TODO add roles
-        return generate(username, expiration)
+        return generate(username, expiration, accessTokenSecretKey)
     }
 
     fun generateRefreshToken(username: String): String {
         val expiration: Date = Date.from(Instant.now().plus(14, ChronoUnit.DAYS))
-        return generate(username, expiration)
+        return generate(username, expiration, refreshTokenSecretKey)
     }
 
-    private fun generate(username: String, expiration: Date): String {
-        val builder = Jwts.builder()
+    private fun generate(username: String, expiration: Date, secretKey: SecretKey): String {
+        return Jwts.builder()
             .setSubject(username)
             .setIssuedAt(Date.from(Instant.now()))
             .setExpiration(expiration)
             .signWith(secretKey)
-        return builder.compact()
+            .compact()
     }
 
-    fun getUsername(token: String): String {
-        return parser.parseClaimsJws(token).body.subject
+    fun getUsernameFromAccessToken(token: String): String? {
+        val username: String
+        try {
+            username = accessTokenParser.parseClaimsJws(token).body.subject
+        } catch (e: Exception) {
+            return null
+        }
+        return username
     }
 
-    fun isValid(token: String, user: User?): Boolean {
-        return user != null && isExpired(token)
+    fun isAccessTokenValid(token: String, user: User?): Boolean {
+        return user != null && isAccessTokenExpired(token)
     }
 
-    fun isValid(token: String): Boolean {
-        val username = getUsername(token)
+    fun generateAccessTokenIfRefreshTokenIsValid(refreshToken: String): String? {
+        val username: String
+        try {
+            username = refreshTokenParser.parseClaimsJws(refreshToken).body.subject
+        } catch (e: Exception) {
+            return null
+        }
 
-        // check if user exists
-        userService.getByUsername(username) ?: return false
+        // if user exists continue
+        if (userService.getByUsername(username) != null) {
+            return null
+        }
 
-        // if user exists, check if the token hasn't expired
-        return isExpired(token)
+        if (isRefreshTokenExpired(refreshToken)) {
+            return null
+        }
+
+        return generateAccessToken(username)
     }
 
-    private fun isExpired(token: String): Boolean {
-        return parser.parseClaimsJws(token)
+    private fun isAccessTokenExpired(token: String): Boolean {
+        return accessTokenParser.parseClaimsJws(token)
+            .body
+            .expiration
+            .after(Date.from(Instant.now()))
+    }
+
+    private fun isRefreshTokenExpired(token: String): Boolean {
+        return refreshTokenParser.parseClaimsJws(token)
             .body
             .expiration
             .after(Date.from(Instant.now()))

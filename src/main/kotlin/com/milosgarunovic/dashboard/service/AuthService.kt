@@ -27,9 +27,8 @@ class AuthService(
     fun refreshToken(refreshToken: String): Map<String, String>? {
         if (refreshToken.startsWith("Bearer ")) {
             val tokenWithoutBearer = refreshToken.substring("Bearer ".length)
-            val username = jwtSupport.getUsername(tokenWithoutBearer)
-            if (jwtSupport.isValid(tokenWithoutBearer)) {
-                val accessToken = jwtSupport.generateAccessToken(username)
+            val accessToken = jwtSupport.generateAccessTokenIfRefreshTokenIsValid(tokenWithoutBearer)
+            if (accessToken != null) {
                 return mapOf("accessToken" to accessToken)
             }
         }

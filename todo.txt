@@ -1,14 +1,14 @@
-2. compile and run without bootRun
-3. add unit tests and integration tests with testcontainers
-4. write down what IO is happening (database, endpoints, http clients etc)
-5. keep properties off of project, add only default ones so it can run by default when somebody
-    downloads the project
-6. external and default config
-8. migrate to Spring WebFlux (with coroutines)
-9. monitoring
-10. deployment - docker (jib)
-11. graceful shutdown
-12. request timeout
-13. qodana
-14. JWT - how to distinct refresh token and access token, so refresh token can't be used for anything else
-        except /refreshToken. Maybe add separate refresh and access token keys?
+1. compile and run without bootRun
+2. add unit tests and integration tests with testcontainers
+3. write down what IO is happening (database, endpoints, http clients etc)
+4. keep properties off of project, add only default ones so it can run by default when somebody
+    downloads the project, external and default config
+5. migrate to Spring WebFlux (with coroutines)
+6. monitoring
+7. deployment - docker (jib)
+8. graceful shutdown
+9. request timeout
+11. add hibernate
+12. customize liquibase
+        how to run liquibase if there are multiple instances of a server?
+13. add readme file
