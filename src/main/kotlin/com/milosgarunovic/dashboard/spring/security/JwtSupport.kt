@@ -2,27 +2,36 @@ package com.milosgarunovic.dashboard.spring.security
 
 import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.service.UserService
+import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
+import javax.annotation.PostConstruct
 import javax.crypto.SecretKey
 
 @Component
 class JwtSupport(
     private val userService: UserService,
+    @Value("\${dashboard.access-token-key}") private val accessTokenKey: String,
+    @Value("\${dashboard.refresh-token-key}") private val refreshTokenKey: String,
 ) {
+    lateinit var accessTokenSecretKey: SecretKey
+    lateinit var accessTokenParser: JwtParser
+    lateinit var refreshTokenSecretKey: SecretKey
+    lateinit var refreshTokenParser: JwtParser
 
-    // TODO move key to config?
-    private final val accessTokenKey = "65c31aab-d804-46c3-bce5-b6086c5a0832"
-    private val accessTokenSecretKey = Keys.hmacShaKeyFor(accessTokenKey.toByteArray())
-    private val accessTokenParser = Jwts.parserBuilder().setSigningKey(accessTokenSecretKey).build()
+    @PostConstruct
+    fun init() {
+        accessTokenSecretKey = Keys.hmacShaKeyFor(accessTokenKey.toByteArray())
+        accessTokenParser = Jwts.parserBuilder().setSigningKey(accessTokenSecretKey).build()
 
-    private final val refreshTokenKey = "65c31aab-d804-46c3-bce5-b6086c5a0833"
-    private val refreshTokenSecretKey = Keys.hmacShaKeyFor(refreshTokenKey.toByteArray())
-    private val refreshTokenParser = Jwts.parserBuilder().setSigningKey(refreshTokenSecretKey).build()
+        refreshTokenSecretKey = Keys.hmacShaKeyFor(refreshTokenKey.toByteArray())
+        refreshTokenParser = Jwts.parserBuilder().setSigningKey(refreshTokenSecretKey).build()
+    }
 
     fun generateAccessToken(username: String): String {
         val expiration: Date = Date.from(Instant.now().plus(3, ChronoUnit.MINUTES))

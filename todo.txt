@@ -1,12 +1,11 @@
-2. add unit tests and integration tests with testcontainers
-4. keep properties off of project, add only default ones so it can run by default when somebody
-    downloads the project, external and default config
-5. migrate to Spring WebFlux (with coroutines)
-6. monitoring
-7. deployment - docker (jib)
-8. graceful shutdown
-9. request timeout
-11. add hibernate
-12. customize liquibase
+1. add unit tests and integration tests with testcontainers
+2. migrate to Spring WebFlux (with coroutines)
+3. monitoring
+4. deployment - docker (jib)
+5. graceful shutdown
+6. request timeout
+7. add hibernate
+8. customize liquibase
         how to run liquibase if there are multiple instances of a server?
-13. add readme file
+9. add readme file
+10. validate everything (user registration duplicate username for example)
