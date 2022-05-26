@@ -1,6 +1,4 @@
-1. compile and run without bootRun
 2. add unit tests and integration tests with testcontainers
-3. write down what IO is happening (database, endpoints, http clients etc)
 4. keep properties off of project, add only default ones so it can run by default when somebody
     downloads the project, external and default config
 5. migrate to Spring WebFlux (with coroutines)
