@@ -40,7 +40,7 @@ open class CustomLoggingReqResFilter : OncePerRequestFilter() {
 
         val elapsedRequestTime = (Clock.System.now() - requestStartTime).inWholeMilliseconds
         val status = contentCachingResponseWrapper.status
-        val statusText = HttpStatus.valueOf(status).reasonPhrase
+        val statusText = HttpStatus.valueOf(status).reasonPhrase.uppercase()
         logger.info("<- RES id=[$reqId];${userLogInfo} url=[$uri]; method=[$method]; status=[$status $statusText]; elapsedTime=[${elapsedRequestTime}ms];")
 
         // must be after filter, because contentCachingRequestWrapper doesn't have anything cached if inputStream is
