@@ -1,25 +1,32 @@
 ### add task
 POST http://localhost:8080/task
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUzNzM5MTA0LCJleHAiOjE2NTM3MzkyODR9.gb9Bw7-kDU_-zIT4a6rRdCMjEJX16KIXwRCrWuRe5ag
 
 {
-  "name": "First task"
+  "name": "Something new"
 }
+
+### complete task
+POST http://localhost:8080/task/complete/1e00eae2-9649-42cf-909e-cd78b191de56
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUzNzM5MTA0LCJleHAiOjE2NTM3MzkyODR9.gb9Bw7-kDU_-zIT4a6rRdCMjEJX16KIXwRCrWuRe5ag
 
 ### update task
 POST http://localhost:8080/task/update
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUzNzM5MTA0LCJleHAiOjE2NTM3MzkyODR9.gb9Bw7-kDU_-zIT4a6rRdCMjEJX16KIXwRCrWuRe5ag
 
 {
-  "id": "b7735216-71c4-48a1-acfb-0a1dc62b58a7",
-  "name": "First task",
+  "id": "1e00eae2-9649-42cf-909e-cd78b191de56",
+  "name": "Something new changed",
   "description": "Something new new",
-  "completed": false
+  "completed": true
 }
 
 ### get all tasks
 GET http://localhost:8080/task
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUyOTEzNDg0LCJleHAiOjE2NTI5MTM2NjR9.uW5XUTBXSoA60PvsPWHI5zhJV7QJwMaHGpKHm_aScr8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjUzNzM5MTA0LCJleHAiOjE2NTM3MzkyODR9.gb9Bw7-kDU_-zIT4a6rRdCMjEJX16KIXwRCrWuRe5ag
 
 ### delete task
 DELETE http://localhost:8080/task/dc6195dc-ea91-480e-be7d-6a7e4fd6240e

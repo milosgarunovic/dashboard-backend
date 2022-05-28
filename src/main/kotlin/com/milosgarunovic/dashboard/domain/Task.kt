@@ -1,5 +1,6 @@
 package com.milosgarunovic.dashboard.domain
 
+import com.milosgarunovic.dashboard.api.TaskResponse
 import java.util.*
 
 data class Task(
@@ -12,3 +13,5 @@ data class Task(
 //    val userId: String, // user that is the owner
 //    val color: String? = null,
 )
+
+fun Task.toTaskResponse() = TaskResponse(id, name, description, completed)

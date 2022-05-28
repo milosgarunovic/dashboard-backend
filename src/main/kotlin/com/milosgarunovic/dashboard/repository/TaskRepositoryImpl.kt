@@ -72,4 +72,10 @@ class TaskRepositoryImpl(
         val query = "DELETE FROM tasks WHERE id = :id::uuid"
         namedParameterJdbcTemplate.update(query, mapOf("id" to id))
     }
+
+    fun complete(id: String) {
+        //language=postgresql
+        val query = "UPDATE tasks SET completed = true WHERE id = :id::uuid"
+        namedParameterJdbcTemplate.update(query, mapOf("id" to id))
+    }
 }
