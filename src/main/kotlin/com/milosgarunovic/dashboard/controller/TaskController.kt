@@ -26,7 +26,7 @@ class TaskController(val taskService: TaskService) {
         if (task != null) {
             return ResponseEntity(task, HttpStatus.OK)
         }
-        return ResponseEntity(null, HttpStatus.NOT_FOUND)
+        return ResponseEntity(HttpStatus.NOT_FOUND)
     }
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
