@@ -76,7 +76,7 @@ class JwtSupport(
         }
 
         // if user exists continue
-        if (userService.getByUsername(username) != null) {
+        if (userService.getByEmail(username) != null) {
             return null
         }
 

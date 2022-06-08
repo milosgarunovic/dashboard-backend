@@ -37,7 +37,7 @@ class CustomAuthorizationFilter(
                 response.sendError(HttpStatus.FORBIDDEN.value())
                 return
             }
-            val user = userService.getByUsername(username)
+            val user = userService.getByEmail(username)
             if (jwtSupport.isAccessTokenValid(token, user)) {
                 SecurityContextHolder.getContext().authentication =
                     UsernamePasswordAuthenticationToken(username, user!!.password, listOf(SimpleGrantedAuthority("USER")))

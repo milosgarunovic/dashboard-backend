@@ -12,7 +12,7 @@ class AuthService(
 ) {
 
     fun login(username: String, password: String): Map<String, String>? {
-        val user = userService.getByUsername(username)
+        val user = userService.getByEmail(username)
 
         user?.let {
             if (passwordEncoder.matches(password, user.password)) {

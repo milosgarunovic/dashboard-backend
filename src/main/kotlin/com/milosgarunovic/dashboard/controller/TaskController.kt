@@ -7,6 +7,8 @@ import com.milosgarunovic.dashboard.service.TaskService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
+import javax.validation.constraints.Size
 
 @RestController
 @RequestMapping("/task")
@@ -29,7 +31,7 @@ class TaskController(val taskService: TaskService) {
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
     @ResponseStatus(HttpStatus.CREATED)
-    fun add(@RequestBody task: TaskAddRequest): TaskResponse {
+    fun add(@Valid @RequestBody task: TaskAddRequest): TaskResponse {
         return taskService.add(task)
     }
 

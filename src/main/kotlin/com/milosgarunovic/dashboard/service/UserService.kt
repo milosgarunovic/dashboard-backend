@@ -12,13 +12,13 @@ class UserService(
     @Lazy val passwordEncoder: PasswordEncoder,
 ) {
 
-    fun add(user: User) {
-        val userCopy = user.copy(password = passwordEncoder.encode(user.password))
+    fun add(username: String, password: String) {
+        val userCopy = User(email = username, password = passwordEncoder.encode(password))
         userRepositoryImpl.add(userCopy)
     }
 
-    fun getByUsername(username: String): User? {
-        return userRepositoryImpl.getByUsernameOrEmail(username)
+    fun getByEmail(username: String): User? {
+        return userRepositoryImpl.getByEmail(username)
     }
 
 }

@@ -35,9 +35,9 @@ class SecurityConfig(
     @Bean
     fun userDetailsService(userService: UserService): UserDetailsService {
         return UserDetailsService { username: String ->
-            val user = userService.getByUsername(username)
+            val user = userService.getByEmail(username)
             if (user != null) {
-                User(user.username, user.password, listOf(SimpleGrantedAuthority("USER")))
+                User(user.email, user.password, listOf(SimpleGrantedAuthority("USER")))
             } else {
                 throw UsernameNotFoundException("User '$username' not found")
             }

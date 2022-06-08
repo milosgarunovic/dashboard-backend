@@ -9,11 +9,10 @@ class UserRepositoryImpl(val jdbcTemplate: NamedParameterJdbcTemplate) {
 
     fun add(user: User): User {
         //language=postgresql
-        val query = "INSERT INTO users VALUES (:id::uuid, :username, :email, :password)"
+        val query = "INSERT INTO users VALUES (:id::uuid, :email, :password)"
         jdbcTemplate.update(
             query, mapOf(
                 "id" to user.id,
-                "username" to user.username,
                 "email" to user.email,
                 "password" to user.password,
             )
@@ -21,13 +20,12 @@ class UserRepositoryImpl(val jdbcTemplate: NamedParameterJdbcTemplate) {
         return user
     }
 
-    fun getByUsernameOrEmail(usernameOrEmail: String): User? {
+    fun getByEmail(email: String): User? {
         //language=postgresql
-        val query = "SELECT * FROM users WHERE username = :uOrE OR email = :uOrE"
-        return jdbcTemplate.queryForObject(query, mapOf("uOrE" to usernameOrEmail)) { rs, _ ->
+        val query = "SELECT * FROM users WHERE email = :email"
+        return jdbcTemplate.queryForObject(query, mapOf("email" to email)) { rs, _ ->
             User(
                 rs.getString("id"),
-                rs.getString("username"),
                 rs.getString("email"),
                 rs.getString("password"),
             )

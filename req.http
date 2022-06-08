@@ -36,9 +36,8 @@ POST http://localhost:8080/user/register
 Content-Type: application/json
 
 {
-  "username": "test",
-  "email": "test@gmail.com",
-  "password": "password123"
+  "email": "test",
+  "password": "pass"
 }
 
 ### login
@@ -46,7 +45,7 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "test",
+  "email": "test@gmail.com",
   "password": "password123"
 }
 
