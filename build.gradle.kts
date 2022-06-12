@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.6.6"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.7.0"
     kotlin("plugin.spring") version "1.6.10"
 }
 
@@ -30,7 +30,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
     // database
-    implementation("org.liquibase:liquibase-core:4.9.1")
+    implementation("org.liquibase:liquibase-core:4.10.0")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:2.6.7")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
