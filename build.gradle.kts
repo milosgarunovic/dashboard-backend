@@ -15,10 +15,12 @@ repositories {
     mavenCentral()
 }
 
+val springBootVersion = "2.7.0"
+
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web:2.6.7")
-    implementation("org.springframework.boot:spring-boot-starter-security:2.6.7")
-    implementation("org.springframework.boot:spring-boot-starter-validation:2.6.7")
+    implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-validation:$springBootVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10")
@@ -30,14 +32,14 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
     // database
-    implementation("org.liquibase:liquibase-core:4.10.0")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc:2.6.7")
+    implementation("org.liquibase:liquibase-core:4.11.0")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.7")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 
-    runtimeOnly("org.postgresql:postgresql:42.3.4")
+    runtimeOnly("org.postgresql:postgresql:42.3.6")
 }
 
 tasks.withType<KotlinCompile> {
