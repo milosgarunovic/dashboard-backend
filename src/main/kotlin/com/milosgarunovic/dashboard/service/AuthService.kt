@@ -11,13 +11,13 @@ class AuthService(
     val jwtSupport: JwtSupport
 ) {
 
-    fun login(username: String, password: String): Map<String, String>? {
-        val user = userService.getByEmail(username)
+    fun login(email: String, password: String): Map<String, String>? {
+        val user = userService.getByEmail(email)
 
         user?.let {
             if (passwordEncoder.matches(password, user.password)) {
-                val token = jwtSupport.generateAccessToken(username)
-                val refreshToken = jwtSupport.generateRefreshToken(username)
+                val token = jwtSupport.generateAccessToken(email)
+                val refreshToken = jwtSupport.generateRefreshToken(email)
                 return mapOf("accessToken" to token, "refreshToken" to refreshToken)
             }
         }

@@ -20,7 +20,7 @@ class AuthController(
             return ResponseEntity(loginInfo, HttpStatus.OK)
         }
 
-        return ResponseEntity(null, HttpStatus.UNAUTHORIZED)
+        return ResponseEntity(mapOf("message" to "Username or password is not correct."), HttpStatus.UNAUTHORIZED)
     }
 
     @GetMapping("/refreshToken", produces = ["application/json"])
