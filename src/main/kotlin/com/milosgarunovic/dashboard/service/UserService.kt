@@ -2,14 +2,14 @@ package com.milosgarunovic.dashboard.service
 
 import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.exception.ResourceAlreadyExistsException
-import com.milosgarunovic.dashboard.repository.UserRepositoryImpl
+import com.milosgarunovic.dashboard.repository.UserRepository
 import org.springframework.context.annotation.Lazy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
 class UserService(
-    val userRepository: UserRepositoryImpl,
+    val userRepository: UserRepository,
     @Lazy val passwordEncoder: PasswordEncoder,
 ) {
 
