@@ -5,20 +5,21 @@ import com.milosgarunovic.dashboard.api.TaskResponse
 import com.milosgarunovic.dashboard.api.TaskUpdateRequest
 import com.milosgarunovic.dashboard.api.toTask
 import com.milosgarunovic.dashboard.domain.toTaskResponse
-import com.milosgarunovic.dashboard.repository.TaskRepositoryImpl
+import com.milosgarunovic.dashboard.repository.TaskRepository
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 class TaskService(
-    val taskRepositoryImpl: TaskRepositoryImpl
+    val taskRepository: TaskRepository
 ) {
 
     fun getAll(): List<TaskResponse> {
-        return taskRepositoryImpl.getAll().map { it.toTaskResponse() }
+        return taskRepository.findAll().map { it.toTaskResponse() }
     }
 
-    fun getById(id: String): TaskResponse? {
-        val task = taskRepositoryImpl.getById(id)
+    fun getById(id: UUID): TaskResponse? {
+        val task = taskRepository.getTaskById(id)
         if (task != null) {
             return task.toTaskResponse()
         }
@@ -26,18 +27,18 @@ class TaskService(
     }
 
     fun add(taskAddRequest: TaskAddRequest): TaskResponse {
-        return taskRepositoryImpl.add(taskAddRequest.toTask()).toTaskResponse()
+        return taskRepository.save(taskAddRequest.toTask()).toTaskResponse()
     }
 
     fun update(taskUpdateRequest: TaskUpdateRequest): TaskResponse {
-        return taskRepositoryImpl.update(taskUpdateRequest.toTask()).toTaskResponse()
+        return taskRepository.save(taskUpdateRequest.toTask()).toTaskResponse()
     }
 
-    fun delete(id: String) {
-        taskRepositoryImpl.delete(id)
+    fun delete(id: UUID) {
+        taskRepository.deleteById(id)
     }
 
-    fun complete(id: String) {
-        taskRepositoryImpl.complete(id)
+    fun complete(id: UUID) {
+        taskRepository.complete(id)
     }
 }

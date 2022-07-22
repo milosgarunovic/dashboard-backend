@@ -2,9 +2,12 @@ package com.milosgarunovic.dashboard.domain
 
 import com.milosgarunovic.dashboard.api.TaskResponse
 import java.util.*
+import javax.persistence.Entity
+import javax.persistence.Id
 
+@Entity(name = "tasks")
 data class Task(
-    val id: String = UUID.randomUUID().toString(),
+    @Id val id: UUID = UUID.randomUUID(),
     val name: String,
     val description: String? = null,
     val completed: Boolean = false,

@@ -1,9 +1,12 @@
 package com.milosgarunovic.dashboard.domain
 
 import java.util.*
+import javax.persistence.Entity
+import javax.persistence.Id
 
+@Entity(name = "users")
 data class User(
-    val id: String = UUID.randomUUID().toString(),
+    @Id val id: UUID = UUID.randomUUID(),
     val email: String,
     val password: String,
 )

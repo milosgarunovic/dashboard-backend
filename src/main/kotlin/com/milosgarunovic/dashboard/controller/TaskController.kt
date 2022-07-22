@@ -7,8 +7,8 @@ import com.milosgarunovic.dashboard.service.TaskService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 import javax.validation.Valid
-import javax.validation.constraints.Size
 
 @RestController
 @RequestMapping("/task")
@@ -21,7 +21,7 @@ class TaskController(val taskService: TaskService) {
     }
 
     @GetMapping("/{id}", produces = ["application/json"])
-    fun getById(@PathVariable id: String): ResponseEntity<TaskResponse> {
+    fun getById(@PathVariable id: UUID): ResponseEntity<TaskResponse> {
         val task = taskService.getById(id)
         if (task != null) {
             return ResponseEntity(task, HttpStatus.OK)
@@ -43,13 +43,13 @@ class TaskController(val taskService: TaskService) {
 
     @DeleteMapping("/{id}", produces = ["application/json"])
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: String) {
+    fun delete(@PathVariable id: UUID) {
         taskService.delete(id)
     }
 
     @PostMapping("/complete/{id}", consumes = ["application/json"], produces = ["application/json"])
     @ResponseStatus(HttpStatus.OK)
-    fun complete(@PathVariable id: String) {
+    fun complete(@PathVariable id: UUID) {
         taskService.complete(id)
     }
 }
