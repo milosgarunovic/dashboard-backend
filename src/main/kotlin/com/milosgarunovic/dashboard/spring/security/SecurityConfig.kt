@@ -52,10 +52,10 @@ class SecurityConfig(
                 UsernamePasswordAuthenticationFilter::class.java
             )
             .authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .antMatchers("/user/register").permitAll()
-            .antMatchers("/task/**").hasRole("USER")
-            .antMatchers("/", "/**").permitAll()
+            .mvcMatchers("/login").permitAll()
+            .mvcMatchers("/user/register").permitAll()
+            .mvcMatchers("/task/**").hasRole("USER")
+            .mvcMatchers("/", "/**").permitAll()
             .and()
             .httpBasic().disable()
             .csrf().disable()
@@ -82,6 +82,10 @@ class SecurityConfig(
     /**
      * Removes the ROLE_ prefix in Spring Security
      * https://stackoverflow.com/a/43964633
+     *
+     * When defining a role, its name should start with the ROLE_ prefix. At the implementation level, this prefix
+     * specifies the difference between a role and an authority.
+     * - Spring Security in Action page 196
      */
     @Bean
     fun grantedAuthorityDefaults(): GrantedAuthorityDefaults = GrantedAuthorityDefaults("")

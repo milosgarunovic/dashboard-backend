@@ -1,16 +1,16 @@
 ### add task
 POST http://localhost:8080/task
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODUyNzM4MSwiZXhwIjoxNjU4NTI3NTYxfQ.eMngu2n67vQ9esKc7IyNRtaNm2X6HYXHYo9Nqi5xOOE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODYwNTQ3NCwiZXhwIjoxNjU4NjA1NjU0fQ.Q3gJb-z-Gc2qIGWlngNXUsXVQOLyqIeRbJhHS2GBTGk
 
 {
   "name": "Something new 2"
 }
 
 ### complete task
-POST http://localhost:8080/task/complete/02e13fb7-10db-411a-8e59-a022de5d11cd
+POST http://localhost:8080/task/complete/c8b4497e-a481-458c-9b32-ba51161c8f9d
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODUyNzM4MSwiZXhwIjoxNjU4NTI3NTYxfQ.eMngu2n67vQ9esKc7IyNRtaNm2X6HYXHYo9Nqi5xOOE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODYwNTQ3NCwiZXhwIjoxNjU4NjA1NjU0fQ.Q3gJb-z-Gc2qIGWlngNXUsXVQOLyqIeRbJhHS2GBTGk
 
 ### update task
 POST http://localhost:8080/task/update
@@ -26,10 +26,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhd
 
 ### get all tasks
 GET http://localhost:8080/task
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODUyNzM4MSwiZXhwIjoxNjU4NTI3NTYxfQ.eMngu2n67vQ9esKc7IyNRtaNm2X6HYXHYo9Nqi5xOOE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODYwNTQ3NCwiZXhwIjoxNjU4NjA1NjU0fQ.Q3gJb-z-Gc2qIGWlngNXUsXVQOLyqIeRbJhHS2GBTGk
 
 ### delete task
-DELETE http://localhost:8080/task/388dc05e-0975-433b-987a-d8c47625ebde
+DELETE http://localhost:8080/task/c8b4497e-a481-458c-9b32-ba51161c8f9d
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODUyNzM4MSwiZXhwIjoxNjU4NTI3NTYxfQ.eMngu2n67vQ9esKc7IyNRtaNm2X6HYXHYo9Nqi5xOOE
 
 ### register user
