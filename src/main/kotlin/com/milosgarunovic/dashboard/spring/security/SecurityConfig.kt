@@ -60,6 +60,8 @@ class SecurityConfig(
             .httpBasic().disable()
             .csrf().disable()
             .formLogin().disable()
+            .logout().disable()
+            .requestCache().disable()
             .cors().and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
@@ -71,9 +73,8 @@ class SecurityConfig(
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration().apply {
             allowCredentials = true
-            addAllowedOrigin("*")
-            addAllowedHeader("*")
-            addAllowedMethod("*")
+            allowedOrigins = listOf("localhost", "127.0.0.1")
+            allowedMethods = listOf("GET", "POST", "DELETE")
         }
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
