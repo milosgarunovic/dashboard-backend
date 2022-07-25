@@ -26,7 +26,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhd
 
 ### get all tasks
 GET http://localhost:8080/task
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODYwNTQ3NCwiZXhwIjoxNjU4NjA1NjU0fQ.Q3gJb-z-Gc2qIGWlngNXUsXVQOLyqIeRbJhHS2GBTGk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODc4OTU3NywiZXhwIjoxNjU4Nzg5NzU3fQ.JtFjt6_C_UTxSP7S_vw1A720T49GkbzGnVarRMFy9B0
 
 ### delete task
 DELETE http://localhost:8080/task/c8b4497e-a481-458c-9b32-ba51161c8f9d

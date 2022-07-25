@@ -1,6 +1,5 @@
 package com.milosgarunovic.dashboard.spring.security
 
-import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.service.UserService
 import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
@@ -53,51 +52,12 @@ class JwtSupport(
             .compact()
     }
 
-    fun getUsernameFromAccessToken(token: String): String? {
-        val username: String
-        try {
-            username = accessTokenParser.parseClaimsJws(token).body.subject
-        } catch (e: Exception) {
-            return null
-        }
-        return username
-    }
-
-    fun isAccessTokenValid(token: String, user: User?): Boolean {
-        return user != null && isAccessTokenExpired(token)
+    fun getUsernameFromAccessToken(token: String): String {
+        return accessTokenParser.parseClaimsJws(token).body.subject
     }
 
     fun generateAccessTokenIfRefreshTokenIsValid(refreshToken: String): String? {
-        val username: String
-        try {
-            username = refreshTokenParser.parseClaimsJws(refreshToken).body.subject
-        } catch (e: Exception) {
-            return null
-        }
-
-        // if user exists continue
-        if (userService.getByEmail(username) != null) {
-            return null
-        }
-
-        if (isRefreshTokenExpired(refreshToken)) {
-            return null
-        }
-
+        val username = refreshTokenParser.parseClaimsJws(refreshToken).body.subject
         return generateAccessToken(username)
-    }
-
-    private fun isAccessTokenExpired(token: String): Boolean {
-        return accessTokenParser.parseClaimsJws(token)
-            .body
-            .expiration
-            .after(Date.from(Instant.now()))
-    }
-
-    private fun isRefreshTokenExpired(token: String): Boolean {
-        return refreshTokenParser.parseClaimsJws(token)
-            .body
-            .expiration
-            .after(Date.from(Instant.now()))
     }
 }

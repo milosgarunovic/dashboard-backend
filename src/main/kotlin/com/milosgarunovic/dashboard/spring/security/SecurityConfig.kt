@@ -1,10 +1,15 @@
 package com.milosgarunovic.dashboard.spring.security
 
 import com.milosgarunovic.dashboard.service.UserService
-import com.milosgarunovic.dashboard.spring.filter.CustomAuthorizationFilter
+import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthenticationProvider
+import com.milosgarunovic.dashboard.spring.filter.JwtAuthorizationFilter
+import com.milosgarunovic.dashboard.spring.filter.InitialAuthenticationFilter
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.core.GrantedAuthorityDefaults
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -13,18 +18,18 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
 
-@EnableWebSecurity
+@Configuration
 class SecurityConfig(
-    private val jwtSupport: JwtSupport,
-    private val userService: UserService,
-) {
+    private val initialAuthenticationFilter: InitialAuthenticationFilter,
+    private val jwtAuthorizationFilter: JwtAuthorizationFilter,
+    private val usernamePasswordAuthenticationProvider: UsernamePasswordAuthenticationProvider,
+) : WebSecurityConfigurerAdapter() {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
@@ -45,14 +50,19 @@ class SecurityConfig(
     }
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        return http
-            .addFilterBefore(
-                CustomAuthorizationFilter(jwtSupport, userService),
-                UsernamePasswordAuthenticationFilter::class.java
-            )
+    override fun authenticationManager(): AuthenticationManager {
+        return super.authenticationManager()
+    }
+
+    override fun configure(auth: AuthenticationManagerBuilder) {
+        auth.authenticationProvider(usernamePasswordAuthenticationProvider)
+    }
+
+    override fun configure(http: HttpSecurity) {
+        http
+            .addFilterBefore(initialAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter::class.java)
             .authorizeRequests()
-            .mvcMatchers("/login").permitAll()
             .mvcMatchers("/user/register").permitAll()
             .mvcMatchers("/task/**").hasRole("USER")
             .mvcMatchers("/", "/**").permitAll()
@@ -64,8 +74,6 @@ class SecurityConfig(
             .requestCache().disable()
             .cors().and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .build()
     }
 
     @Bean

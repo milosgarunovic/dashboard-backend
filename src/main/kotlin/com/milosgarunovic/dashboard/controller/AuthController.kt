@@ -1,27 +1,17 @@
 package com.milosgarunovic.dashboard.controller
 
-import com.milosgarunovic.dashboard.api.LoginRequest
 import com.milosgarunovic.dashboard.service.AuthService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class AuthController(
     val authService: AuthService,
 ) {
-
-    @PostMapping("/login", consumes = ["application/json"], produces = ["application/json"])
-    fun login(@Valid @RequestBody login: LoginRequest): ResponseEntity<Map<String, String>> {
-        val loginInfo = authService.login(login.email!!, login.password!!)
-        if (loginInfo != null) {
-            return ResponseEntity(loginInfo, HttpStatus.OK)
-        }
-
-        return ResponseEntity(mapOf("message" to "Username or password is not correct."), HttpStatus.UNAUTHORIZED)
-    }
 
     @GetMapping("/refreshToken", produces = ["application/json"])
     fun refreshToken(@RequestHeader(HttpHeaders.AUTHORIZATION) refreshToken: String): ResponseEntity<Map<String, String>> {

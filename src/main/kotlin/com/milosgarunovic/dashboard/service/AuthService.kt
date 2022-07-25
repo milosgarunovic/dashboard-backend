@@ -1,14 +1,15 @@
 package com.milosgarunovic.dashboard.service
 
 import com.milosgarunovic.dashboard.spring.security.JwtSupport
+import org.springframework.context.annotation.Lazy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
 class AuthService(
     val userService: UserService,
-    val passwordEncoder: PasswordEncoder,
-    val jwtSupport: JwtSupport
+    @Lazy val passwordEncoder: PasswordEncoder,
+    val jwtSupport: JwtSupport,
 ) {
 
     fun login(email: String, password: String): Map<String, String>? {
