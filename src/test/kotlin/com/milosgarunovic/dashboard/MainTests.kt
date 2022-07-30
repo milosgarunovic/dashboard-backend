@@ -28,6 +28,7 @@ class MainTests {
     @Test
     fun `task get expect ok`() {
         // TODO this user needs to exist in database, see how to change that
+        // https://stackoverflow.com/a/45247733
         val accessToken = jwtSupport.generateAccessToken("test@gmail.com")
         mockMvc.perform(get("/task/").header("Authorization", "Bearer $accessToken"))
             .andExpect(status().isOk)
