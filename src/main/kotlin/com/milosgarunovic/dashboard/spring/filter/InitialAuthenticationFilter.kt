@@ -48,7 +48,7 @@ class InitialAuthenticationFilter(
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         // filter works if the path is /login
         // TODO what about refresh token?
-        return !request.servletPath.equals("/login")
+        return !request.requestURI.equals("/login")
 //                || !request.servletPath.equals("/refreshToken")
     }
 }

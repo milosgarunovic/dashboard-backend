@@ -37,7 +37,7 @@ class JwtAuthorizationFilter(
 
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         // skips this filter if path is /login or /refreshToken
-        return request.servletPath.equals("/login") ||
-                request.servletPath.equals("/refreshToken")
+        return request.requestURI.equals("/login") ||
+                request.requestURI.equals("/refreshToken")
     }
 }
