@@ -34,7 +34,7 @@ class AuthenticationTests {
     }
 
     @Test
-    fun `login with correct user and pass returns 403 forbidden`() {
+    fun `login with correct user and pass returns 401 unauthorized`() {
         mockMvc.perform(
             post("/login")
                 .content(
