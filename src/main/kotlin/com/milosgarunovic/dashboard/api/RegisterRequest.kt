@@ -4,7 +4,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-class LoginRequest(
+class RegisterRequest(
     @field:Email
     @field:NotNull
     val email: String?,

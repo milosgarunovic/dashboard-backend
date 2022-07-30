@@ -1,7 +1,7 @@
 package com.milosgarunovic.dashboard.spring.filter
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.milosgarunovic.dashboard.api.LoginRequest
+import com.milosgarunovic.dashboard.api.RegisterRequest
 import com.milosgarunovic.dashboard.service.AuthService
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
@@ -23,8 +23,11 @@ class InitialAuthenticationFilter(
         filterChain: FilterChain
     ) {
         val bodyAsJsonString = request.reader.lines().collect(Collectors.joining(System.lineSeparator()))
-        val loginRequest = objectMapper.readValue(bodyAsJsonString, LoginRequest::class.java)
-        val jwt = authService.login(loginRequest.email!!, loginRequest.password!!)
+
+        class LoginRequest(val email: String, val password: String)
+
+        val registerRequest = objectMapper.readValue(bodyAsJsonString, LoginRequest::class.java)
+        val jwt = authService.login(registerRequest.email, registerRequest.password)
 
         response.contentType = "application/json"
         response.characterEncoding = "UTF-8"

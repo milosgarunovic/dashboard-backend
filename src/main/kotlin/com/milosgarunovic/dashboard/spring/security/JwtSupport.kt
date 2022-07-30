@@ -1,6 +1,5 @@
 package com.milosgarunovic.dashboard.spring.security
 
-import com.milosgarunovic.dashboard.service.UserService
 import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
@@ -14,7 +13,6 @@ import javax.crypto.SecretKey
 
 @Component
 class JwtSupport(
-    private val userService: UserService,
     @Value("\${dashboard.access-token-key}") private val accessTokenKey: String,
     @Value("\${dashboard.refresh-token-key}") private val refreshTokenKey: String,
 ) {

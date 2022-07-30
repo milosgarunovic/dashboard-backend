@@ -49,11 +49,13 @@ class SecurityConfig(
         }
     }
 
+    // TODO ??? what's this for anyway...
     @Bean
     override fun authenticationManager(): AuthenticationManager {
         return super.authenticationManager()
     }
 
+    // TODO ??? what's this for anyway...
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.authenticationProvider(usernamePasswordAuthenticationProvider)
     }

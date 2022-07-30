@@ -28,7 +28,7 @@ class JwtAuthorizationFilter(
             val username = jwtSupport.getUsernameFromAccessToken(token)
             SecurityContextHolder.getContext().authentication = UsernamePasswordAuthentication(username, null)
         } else {
-            response.sendError(HttpStatus.FORBIDDEN.value())
+            response.sendError(HttpStatus.UNAUTHORIZED.value())
             return
         }
 

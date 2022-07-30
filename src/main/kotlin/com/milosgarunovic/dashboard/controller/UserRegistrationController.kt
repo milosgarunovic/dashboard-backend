@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.controller
 
-import com.milosgarunovic.dashboard.api.LoginRequest
+import com.milosgarunovic.dashboard.api.RegisterRequest
 import com.milosgarunovic.dashboard.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -14,7 +14,7 @@ class UserRegistrationController(
 
     @PostMapping(consumes = ["application/json"])
     @ResponseStatus(HttpStatus.CREATED)
-    fun register(@Valid @RequestBody user: LoginRequest) {
+    fun register(@Valid @RequestBody user: RegisterRequest) {
         userService.add(user.email!!, user.password!!)
     }
 

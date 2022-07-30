@@ -1,9 +1,11 @@
-1. validate everything (user registration duplicate username for example)
-2. migrate to Spring WebFlux (with coroutines)
-3. add hibernate
-4. add unit tests and integration tests with testcontainers
-5. customize liquibase
+1. add unit tests and integration tests with testcontainers
+2. add hibernate
+3.      add roles text array field for each uses and use roles for role based authorization
+4. validate everything (user registration duplicate username for example)
+5. migrate to Spring WebFlux (with coroutines)
+6. customize liquibase
         how to run liquibase if there are multiple instances of a server?
+
 --- at some later point in time
 1. add readme file
 2. request timeout

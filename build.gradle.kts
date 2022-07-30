@@ -40,6 +40,8 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("org.springframework.security:spring-security-test:5.7.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 
     runtimeOnly("org.postgresql:postgresql:42.3.6")
 }
