@@ -1,0 +1,14 @@
+package com.milosgarunovic.dashboard
+
+import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.containers.wait.strategy.Wait
+
+object TestContainers {
+
+    val instance by lazy { startContainer() }
+
+    private fun startContainer() = PostgreSQLContainer<Nothing>("postgres:14.2-alpine3.15").apply {
+        setWaitStrategy(Wait.forListeningPort())
+        start()
+    }
+}

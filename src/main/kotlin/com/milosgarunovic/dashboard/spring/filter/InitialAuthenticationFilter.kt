@@ -1,7 +1,6 @@
 package com.milosgarunovic.dashboard.spring.filter
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.milosgarunovic.dashboard.api.RegisterRequest
 import com.milosgarunovic.dashboard.service.AuthService
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component

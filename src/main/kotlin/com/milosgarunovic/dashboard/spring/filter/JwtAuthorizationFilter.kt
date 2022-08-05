@@ -1,5 +1,6 @@
 package com.milosgarunovic.dashboard.spring.filter
 
+import com.milosgarunovic.dashboard.service.UserService
 import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthentication
 import com.milosgarunovic.dashboard.spring.security.JwtSupport
 import org.springframework.http.HttpHeaders.AUTHORIZATION
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse
 @Component
 class JwtAuthorizationFilter(
     private val jwtSupport: JwtSupport,
+    private val userService: UserService,
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
@@ -26,10 +28,14 @@ class JwtAuthorizationFilter(
         if (header != null && header.startsWith(bearer)) {
             val token = header.substring(bearer.length)
             val username = jwtSupport.getUsernameFromAccessToken(token)
+            if (userService.getByEmail(username) == null) {
+                response.sendError(HttpStatus.UNAUTHORIZED.value(), "Bearer token issue.")
+                return
+            }
             SecurityContextHolder.getContext().authentication = UsernamePasswordAuthentication(username, null)
         } else {
             // TODO write better message
-            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Missing Bearer token")
+            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Missing Bearer token.")
             return
         }
 
