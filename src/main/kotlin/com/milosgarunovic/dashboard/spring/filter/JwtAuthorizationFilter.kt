@@ -28,7 +28,8 @@ class JwtAuthorizationFilter(
             val username = jwtSupport.getUsernameFromAccessToken(token)
             SecurityContextHolder.getContext().authentication = UsernamePasswordAuthentication(username, null)
         } else {
-            response.sendError(HttpStatus.UNAUTHORIZED.value())
+            // TODO write better message
+            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Missing Bearer token")
             return
         }
 
@@ -38,6 +39,7 @@ class JwtAuthorizationFilter(
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         // skips this filter if path is /login or /refreshToken
         return request.requestURI.equals("/login") ||
-                request.requestURI.equals("/refreshToken")
+                request.requestURI.equals("/refreshToken") ||
+                request.requestURI.equals("/user/register")
     }
 }
