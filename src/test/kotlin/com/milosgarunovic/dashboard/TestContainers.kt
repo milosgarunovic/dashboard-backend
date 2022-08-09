@@ -7,6 +7,7 @@ object TestContainers {
 
     val instance by lazy { startContainer() }
 
+    // TODO dockerImageName should be the same as in docker-compose, figure out how to define for both in one place
     private fun startContainer() = PostgreSQLContainer<Nothing>("postgres:14.2-alpine3.15").apply {
         setWaitStrategy(Wait.forListeningPort())
         start()

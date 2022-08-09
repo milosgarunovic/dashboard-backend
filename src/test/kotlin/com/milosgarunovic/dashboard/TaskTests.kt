@@ -33,17 +33,16 @@ class TaskTests : AbstractTestContainers() {
 
     @Test
     fun `task get expect ok`() {
-        // must register user first
-        val jsonContent = objectMapper.writeValueAsBytes(mapOf("email" to "tasks@gmail.com", "password" to "password"))
         // register user so it exists in database
+        val email = "tasks@gmail.com"
         mockMvc.perform(
             post("/user/register")
-                .content(jsonContent)
+                .content(objectMapper.writeValueAsBytes(mapOf("email" to email, "password" to "password")))
                 .contentType(MediaType.APPLICATION_JSON)
         )
 
         // instead of login, just generate the token (https://stackoverflow.com/a/45247733)
-        val accessToken = jwtSupport.generateAccessToken("tasks@gmail.com")
+        val accessToken = jwtSupport.generateAccessToken(email)
         mockMvc.perform(get("/task/").header("Authorization", "Bearer $accessToken"))
             .andExpect(status().isOk)
     }
