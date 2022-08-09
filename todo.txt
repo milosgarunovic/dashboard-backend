@@ -1,9 +1,9 @@
 1. add unit tests and integration tests with testcontainers
+    1.1. validate everything (user registration duplicate username for example)
 2. add hibernate
-3.      add roles text array field for each uses and use roles for role based authorization
-4. validate everything (user registration duplicate username for example)
-5. migrate to Spring WebFlux (with coroutines)
-6. customize liquibase
+3. add roles text array field for each user and use roles for role based authorization
+4. migrate to Spring WebFlux (with coroutines)
+5. customize liquibase
         how to run liquibase if there are multiple instances of a server?
 
 --- at some later point in time
@@ -12,3 +12,12 @@
 3. monitoring
 4. deployment - docker (jib)
 5. graceful shutdown
+6. audit log (check API Security in Action 1.5.4 and chapter 3)
+7. rate limiting unauthenticated requests to prevent DoS
+
+---
+for test, check also maximum inputs for some (or all) fields to prevent DoS
+    for example limit password between 8 and 256 chars
+
+---
+if the app calls 3rd party services, we need to log req/res
