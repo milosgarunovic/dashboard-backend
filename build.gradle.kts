@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 
-val springBootVersion = "2.7.0"
+val springBootVersion = "2.7.2"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
@@ -26,7 +26,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
     // jwt
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
@@ -34,13 +34,12 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
     // database
-    implementation("org.liquibase:liquibase-core:4.11.0")
+    implementation("org.liquibase:liquibase-core:4.12.0")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testImplementation("org.springframework.security:spring-security-test:5.7.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("org.testcontainers:junit-jupiter:1.17.3")
     testImplementation("org.testcontainers:postgresql:1.17.3")
