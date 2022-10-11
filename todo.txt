@@ -21,3 +21,9 @@ for test, check also maximum inputs for some (or all) fields to prevent DoS
 
 ---
 if the app calls 3rd party services, we need to log req/res
+---
+add photos next to tasks in order to have visual aid
+    found on "I'll remember" app
+
+---
+maybe make it "invite-only", so the admin must invite people in and nobody else can join without the invitation
