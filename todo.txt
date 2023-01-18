@@ -27,3 +27,20 @@ add photos next to tasks in order to have visual aid
 
 ---
 maybe make it "invite-only", so the admin must invite people in and nobody else can join without the invitation
+
+jenkins has this functionality - "allow users to sign up" in configure security
+---
+security
+    add kid header for key rotation
+    it is a common security practice to invalidate all of a user’s existing sessions when they change their password
+    RBAC - Role Based Access Control - need to implement this when I get more than one role for user
+---
+maybe make browser extension or new page like on new tab
+make a (flutter) app for notifications
+multiple timers (pomodoro), sync on pause and every 5 seconds (/w backend)
+journal on habits and tasks, link those like jira links bugs
+https://freedom.to/blog/paper-or-digital-planner/?utm_source=email&utm_campaign=nwslttr81
+---
+for to do, make a list of things to do this week, and on the end "next week" and just put things for next week there.
+    Like when you don't know which day next week you're going to do something, just put it there, and on the end of the
+    week just put in the corresponding day..

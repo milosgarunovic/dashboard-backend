@@ -49,7 +49,9 @@ class SecurityConfig(
         }
     }
 
-    // TODO ??? what's this for anyway...
+    /**
+     *  Used to provide public access to authenticationManager, it's protected in WebSecurityConfigurerAdapter
+     */
     @Bean
     override fun authenticationManager(): AuthenticationManager {
         return super.authenticationManager()
