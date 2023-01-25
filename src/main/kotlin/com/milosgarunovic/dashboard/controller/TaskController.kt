@@ -48,7 +48,7 @@ class TaskController(val taskService: TaskService) {
         taskService.delete(id)
     }
 
-    @PostMapping("/complete/{id}", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping("/complete/{id}", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseStatus(HttpStatus.OK)
     fun complete(@PathVariable id: UUID) {
         taskService.complete(id)
