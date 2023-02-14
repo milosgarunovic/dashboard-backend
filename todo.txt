@@ -44,3 +44,7 @@ https://freedom.to/blog/paper-or-digital-planner/?utm_source=email&utm_campaign=
 for to do, make a list of things to do this week, and on the end "next week" and just put things for next week there.
     Like when you don't know which day next week you're going to do something, just put it there, and on the end of the
     week just put in the corresponding day..
+---
+https://www.makeuseof.com/productivity-apps-to-make-goals-reality/ copy some of the ideas that fit
+---
+add swagger/open API

@@ -16,7 +16,6 @@ class UserRegistrationController(
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseStatus(HttpStatus.CREATED)
     fun register(@Valid @RequestBody user: RegisterRequest) {
-        userService.add(user.email!!, user.password!!)
+        userService.add(user.email, user.password)
     }
-
 }

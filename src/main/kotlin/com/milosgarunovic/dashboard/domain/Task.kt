@@ -7,10 +7,10 @@ import javax.persistence.Id
 
 @Entity(name = "tasks")
 data class Task(
-    @Id val id: UUID = UUID.randomUUID(),
-    val name: String,
-    val description: String? = null,
-    val completed: Boolean = false,
+    @Id var id: UUID = UUID.randomUUID(),
+    var name: String,
+    var description: String? = null,
+    var completed: Boolean = false,
 //    val active: Boolean = true,
 //    val tags: List<String>?,
 //    val userId: String, // user that is the owner
