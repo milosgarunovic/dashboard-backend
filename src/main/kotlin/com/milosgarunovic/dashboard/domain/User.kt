@@ -8,5 +8,5 @@ import javax.persistence.Id
 data class User(
     @Id override var id: UUID = UUID.randomUUID(),
     var email: String,
-    var password: String,
+    var password: String, // TODO set to Password
 ) : BaseEntity()

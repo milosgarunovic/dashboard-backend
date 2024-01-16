@@ -11,7 +11,6 @@ data class Task(
     var name: String,
     var description: String? = null,
     var completed: Boolean = false,
-//    val active: Boolean = true,
 //    val tags: List<String>?,
 //    val userId: String, // user that is the owner
 //    val color: String? = null,
