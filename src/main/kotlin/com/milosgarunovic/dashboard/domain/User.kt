@@ -6,7 +6,7 @@ import javax.persistence.Id
 
 @Entity(name = "users")
 data class User(
-    @Id var id: UUID = UUID.randomUUID(),
+    @Id override var id: UUID = UUID.randomUUID(),
     var email: String,
     var password: String,
-)
+) : BaseEntity()

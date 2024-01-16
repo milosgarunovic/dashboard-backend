@@ -9,12 +9,11 @@ import org.springframework.security.web.FilterChainProxy
 import org.springframework.stereotype.Component
 import javax.servlet.Filter
 
-
 @SpringBootApplication
-class DashboardBackendApplication
+class App
 
 fun main(args: Array<String>) {
-    runApplication<DashboardBackendApplication>(*args)
+    runApplication<App>(*args)
 }
 
 @Component

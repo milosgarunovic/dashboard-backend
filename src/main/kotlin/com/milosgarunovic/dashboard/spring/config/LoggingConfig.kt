@@ -9,4 +9,5 @@ class LoggingConfig {
 
     @Bean
     fun customLoggingReqResFilter() = CustomLoggingReqResFilter()
+
 }

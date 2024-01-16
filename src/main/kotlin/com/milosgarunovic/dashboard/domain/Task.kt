@@ -7,7 +7,7 @@ import javax.persistence.Id
 
 @Entity(name = "tasks")
 data class Task(
-    @Id var id: UUID = UUID.randomUUID(),
+    @Id override var id: UUID = UUID.randomUUID(),
     var name: String,
     var description: String? = null,
     var completed: Boolean = false,
@@ -15,6 +15,6 @@ data class Task(
 //    val tags: List<String>?,
 //    val userId: String, // user that is the owner
 //    val color: String? = null,
-)
+) : BaseEntity()
 
 fun Task.toTaskResponse() = TaskResponse(id, name, description, completed)
