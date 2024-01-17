@@ -6,7 +6,12 @@
 5. customize liquibase
    how to run liquibase if there are multiple instances of a server?
 
+https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
+
+https://owasp.org/www-community/OWASP_Validation_Regex_Repository
+
 --- 
+
 at some later point in time
 
 1. add readme file
@@ -32,6 +37,7 @@ add photos next to tasks in order to have visual aid
 found on "I'll remember" app
 
 ---
+
 maybe make it "invite-only", so the admin must invite people in and nobody else can join without the invitation
 
 jenkins has this functionality - "allow users to sign up" in configure security
@@ -48,6 +54,11 @@ RBAC - Role Based Access Control - need to implement this when I get more than o
 maybe make browser extension or new page like on new tab
 make a (flutter) app for notifications
 multiple timers (pomodoro), sync on pause and every 5 seconds (/w backend)
+
+for pomodoro maybe make a "reverse" pomodoro - Flowmodoro, where you start a timer and work for some time, once you are
+feeling tired stop the stopwatch, divide by 5 and take that many minutes of rest, best focusing on something else
+instead of work (like playing an instrument, reading a book, chatting with somebody)
+
 journal on habits and tasks, link those like jira links bugs
 https://freedom.to/blog/paper-or-digital-planner/?utm_source=email&utm_campaign=nwslttr81
 
@@ -107,7 +118,14 @@ add klint, qodona, docker, test coverage percentage
 
 ---
 
-[IN PROGRESS] pomeriti auth stvari u auth.jwt paket i napisati testove za to, mozda cak i na nivou http servera
+https://www.iqair.com/air-pollution-data-api
+
+idea for selfhosted - air pollution api use it and make graphics or import to grafana?
+
+same for weather - so I can have a dashboard with weather and air pollution
+
+---
+
+[ ] IN PROGRESS - pomeriti auth stvari u auth.jwt paket i napisati testove za to, mozda cak i na nivou http servera
 [ ] dodati users tabelu i vezati note-ove za njega
 [ ] smisliti kako raditi migracije (po potrebi) i kako ih pokretati najbolje
-[ ] add database (postgres plus expose) - podseticu se baza, spremanje za kurs (mana je dodatni softver za odrzavanje)

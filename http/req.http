@@ -1,7 +1,7 @@
 ### add task
 POST http://localhost:8080/task
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY1ODYwNTQ3NCwiZXhwIjoxNjU4NjA1NjU0fQ.Q3gJb-z-Gc2qIGWlngNXUsXVQOLyqIeRbJhHS2GBTGk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTcwNTQyOTMwNCwiZXhwIjoxNzA1NDI5NDg0fQ.4Ae2IhCi9tub4NOQ6UXmBCY82JB68GxuVEyPI-ymOaQ
 
 {
   "name": "Something new 2"

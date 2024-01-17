@@ -1,5 +1,7 @@
 package com.milosgarunovic.dashboard.service
 
+import com.milosgarunovic.dashboard.domain.Email
+import com.milosgarunovic.dashboard.domain.Password
 import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.exception.ResourceAlreadyExistsException
 import com.milosgarunovic.dashboard.repository.UserRepository
@@ -13,7 +15,7 @@ class UserService(
     @Lazy val passwordEncoder: PasswordEncoder,
 ) {
 
-    fun add(email: String, password: String) {
+    fun add(email: Email, password: Password) {
         if (userRepository.getUserByEmail(email) != null) {
             throw ResourceAlreadyExistsException("Email already in use.")
         }
@@ -21,7 +23,7 @@ class UserService(
         userRepository.save(userCopy)
     }
 
-    fun getByEmail(email: String): User? {
+    fun getByEmail(email: Email): User? {
         return userRepository.getUserByEmail(email)
     }
 

@@ -23,6 +23,10 @@ class SecurityFilterChainPrinter : CommandLineRunner {
     @Qualifier("springSecurityFilterChain")
     private lateinit var springSecurityFilterChain: Filter
 
+    /**
+     * Runs all the filters in order, so we can check what exists and where to put a filter, before/after which one.
+     * This is here mostly for debugging, so maybe I should make it as a flag.
+     */
     override fun run(vararg args: String?) {
         val filterChainProxy = springSecurityFilterChain as FilterChainProxy
         filterChainProxy.filterChains

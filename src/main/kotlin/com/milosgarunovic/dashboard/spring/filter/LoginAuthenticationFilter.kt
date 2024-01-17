@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class InitialAuthenticationFilter(
+class LoginAuthenticationFilter(
     private val objectMapper: ObjectMapper,
     private val authService: AuthService,
 ) : OncePerRequestFilter() {

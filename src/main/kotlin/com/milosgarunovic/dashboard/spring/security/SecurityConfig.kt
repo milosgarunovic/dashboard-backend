@@ -3,7 +3,7 @@ package com.milosgarunovic.dashboard.spring.security
 import com.milosgarunovic.dashboard.service.UserService
 import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthenticationProvider
 import com.milosgarunovic.dashboard.spring.filter.JwtAuthorizationFilter
-import com.milosgarunovic.dashboard.spring.filter.InitialAuthenticationFilter
+import com.milosgarunovic.dashboard.spring.filter.LoginAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -26,7 +26,7 @@ import org.springframework.web.filter.CorsFilter
 
 @Configuration
 class SecurityConfig(
-    private val initialAuthenticationFilter: InitialAuthenticationFilter,
+    private val loginAuthenticationFilter: LoginAuthenticationFilter,
     private val jwtAuthorizationFilter: JwtAuthorizationFilter,
     private val usernamePasswordAuthenticationProvider: UsernamePasswordAuthenticationProvider,
 ) : WebSecurityConfigurerAdapter() {
@@ -64,7 +64,7 @@ class SecurityConfig(
 
     override fun configure(http: HttpSecurity) {
         http
-            .addFilterBefore(initialAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
             .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter::class.java)
             .authorizeRequests()
             .mvcMatchers("/user/register").permitAll()
@@ -85,7 +85,7 @@ class SecurityConfig(
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration().apply {
             allowCredentials = true
-            allowedOrigins = listOf("localhost", "127.0.0.1")
+            allowedOrigins = listOf("localhost", "127.0.0.1") // TODO see how to set this part up
             allowedMethods = listOf("GET", "POST", "DELETE")
         }
         source.registerCorsConfiguration("/**", config)

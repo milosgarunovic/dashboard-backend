@@ -22,7 +22,7 @@ class UsernamePasswordAuthenticationProvider(val userService: UserService) : Aut
         throw BadCredentialsException("Username or password is not correct.")
     }
 
-    override fun supports(authentication: Class<*>?): Boolean {
+    override fun supports(authentication: Class<*>): Boolean {
         return UsernamePasswordAuthentication::class.java.isAssignableFrom(authentication)
     }
 

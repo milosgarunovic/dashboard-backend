@@ -14,4 +14,6 @@ class Book(
     val publisher: String? = null,
     val borrowed: BookBorrowed? = null,
     val publishingYear: Int? = null,
+    val starred: Boolean = false, // like a bookmark
+    // TODO tags and list of books, like user defined categories
 ) : BaseEntity()
