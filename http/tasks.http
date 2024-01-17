@@ -1,0 +1,33 @@
+### add task
+POST http://localhost:8080/task
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+{
+  "name": "Something new 2"
+}
+
+### complete task
+POST http://localhost:8080/task/complete/c8b4497e-a481-458c-9b32-ba51161c8f9d
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+### update task
+POST http://localhost:8080/task/update
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+{
+  "id": "02e13fb7-10db-411a-8e59-a022de5d11cd",
+  "name": "Something newerasdf",
+  "description": "My new description",
+  "completed": false
+}
+
+### get all tasks
+GET http://localhost:8080/task
+Authorization: Bearer {{ auth_token }}
+
+### delete task
+DELETE http://localhost:8080/task/c8b4497e-a481-458c-9b32-ba51161c8f9d
+Authorization: Bearer {{ auth_token }}
