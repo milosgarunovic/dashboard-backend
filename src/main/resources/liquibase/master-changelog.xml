@@ -6,5 +6,6 @@
 
     <include file="changelogs/create-task.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/create-user.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/create-weight.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
