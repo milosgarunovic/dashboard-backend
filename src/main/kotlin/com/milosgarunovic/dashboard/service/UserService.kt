@@ -8,6 +8,7 @@ import com.milosgarunovic.dashboard.repository.UserRepository
 import org.springframework.context.annotation.Lazy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 class UserService(
@@ -25,6 +26,10 @@ class UserService(
 
     fun getByEmail(email: Email): User? {
         return userRepository.getUserByEmail(email)
+    }
+
+    fun getById(id: UUID): User {
+        return userRepository.findById(id).get()
     }
 
 }

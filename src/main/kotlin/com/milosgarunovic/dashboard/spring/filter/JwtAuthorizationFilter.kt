@@ -27,12 +27,13 @@ class JwtAuthorizationFilter(
         val bearer = "Bearer "
         if (header != null && header.startsWith(bearer)) {
             val token = header.substring(bearer.length)
-            val username = jwtSupport.getUsernameFromAccessToken(token)
-            if (userService.getByEmail(username) == null) {
+            val email = jwtSupport.getEmailFromAccessToken(token)
+            val user = userService.getByEmail(email)
+            if (user == null) {
                 response.sendError(HttpStatus.UNAUTHORIZED.value(), "Bearer token issue.")
                 return
             }
-            SecurityContextHolder.getContext().authentication = UsernamePasswordAuthentication(username, null)
+            SecurityContextHolder.getContext().authentication = UsernamePasswordAuthentication(user.id, email, null)
         } else {
             // TODO write better message
             response.sendError(HttpStatus.UNAUTHORIZED.value(), "Missing Bearer token.")

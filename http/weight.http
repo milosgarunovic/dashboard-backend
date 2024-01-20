@@ -1,0 +1,8 @@
+### add weight
+POST localhost:8080/weight
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+{
+  "value": 75.2
+}

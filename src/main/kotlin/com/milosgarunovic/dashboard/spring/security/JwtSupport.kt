@@ -1,5 +1,6 @@
 package com.milosgarunovic.dashboard.spring.security
 
+import com.milosgarunovic.dashboard.domain.Email
 import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
@@ -50,7 +51,7 @@ class JwtSupport(
             .compact()
     }
 
-    fun getUsernameFromAccessToken(token: String): String {
+    fun getEmailFromAccessToken(token: String): Email {
         return accessTokenParser.parseClaimsJws(token).body.subject
     }
 

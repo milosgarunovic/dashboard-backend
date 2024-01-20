@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 class UsernamePasswordAuthenticationProvider(val userService: UserService) : AuthenticationProvider {
@@ -17,7 +18,7 @@ class UsernamePasswordAuthenticationProvider(val userService: UserService) : Aut
 
         val user = userService.getByEmail(email)
         if (user != null) {
-            return UsernamePasswordAuthentication(email, password)
+            return UsernamePasswordAuthentication(user.id, email, password)
         }
         throw BadCredentialsException("Username or password is not correct.")
     }
@@ -29,6 +30,7 @@ class UsernamePasswordAuthenticationProvider(val userService: UserService) : Aut
 }
 
 class UsernamePasswordAuthentication(
-    username: String,
-    password: String?,
+    val id: UUID,
+    val username: String,
+    val password: String?,
 ) : UsernamePasswordAuthenticationToken(username, password, listOf(SimpleGrantedAuthority("USER")))

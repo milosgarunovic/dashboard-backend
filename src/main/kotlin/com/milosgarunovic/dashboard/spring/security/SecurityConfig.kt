@@ -69,6 +69,7 @@ class SecurityConfig(
             .authorizeRequests()
             .mvcMatchers("/user/register").permitAll()
             .mvcMatchers("/task/**").hasRole("USER")
+            .mvcMatchers("/weight/**").hasRole("USER")
             .mvcMatchers("/", "/**").permitAll()
             .and()
             .httpBasic().disable()
