@@ -11,7 +11,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/weight")
-class WeightTrackerController(
+class WeightController(
     val weightService: WeightService,
 ) {
 

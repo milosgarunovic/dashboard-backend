@@ -3,6 +3,8 @@ package com.milosgarunovic.dashboard.domain
 import java.time.LocalDate
 import java.util.*
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.Id
 
 @Entity(name = "weights")
@@ -11,6 +13,7 @@ class Weight(
 //    val user: User,
     val value: Double, // limit to some values and maximum of 1 decimal
     val dateCreated: LocalDate = LocalDate.now(),
+    @Enumerated(EnumType.STRING)
     val unit: WeightUnit = WeightUnit.KG,
 )
 
