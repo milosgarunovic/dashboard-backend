@@ -4,6 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
     <changeSet id="2" author="Milos Garunovic">
+        <comment>
+            date_created is in timestamptz, storing UTC value, which is ok because we're storing data that is in present
+            or past, so user can always recreate UTC because timezone rules wont change
+        </comment>
         <createTable tableName="weights">
             <column name="id" type="uuid">
                 <constraints primaryKey="true"/>
@@ -14,7 +18,7 @@
             <column name="value" type="numeric(4, 1)">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_created" type="date">
+            <column name="date_created" type="timestamptz">
                 <constraints nullable="false"/>
             </column>
             <column name="unit" type="text">

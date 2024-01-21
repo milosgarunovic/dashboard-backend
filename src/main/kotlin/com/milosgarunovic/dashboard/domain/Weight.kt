@@ -1,6 +1,8 @@
 package com.milosgarunovic.dashboard.domain
 
-import java.time.LocalDate
+import com.milosgarunovic.dashboard.api.WeightResponse
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -12,7 +14,7 @@ class Weight(
     @Id val id: UUID = UUID.randomUUID(),
 //    val user: User,
     val value: Double, // limit to some values and maximum of 1 decimal
-    val dateCreated: LocalDate = LocalDate.now(),
+    val dateCreated: OffsetDateTime = OffsetDateTime.now(),
     @Enumerated(EnumType.STRING)
     val unit: WeightUnit = WeightUnit.KG,
 )
@@ -20,4 +22,8 @@ class Weight(
 enum class WeightUnit(val value: String) {
     KG("Kg"),
     LBS("lbs"),
+}
+
+fun Weight.toWeightResponse(): WeightResponse {
+    return WeightResponse(id, value, dateCreated.atZoneSameInstant(ZoneOffset.UTC), unit)
 }

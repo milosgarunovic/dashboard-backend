@@ -3,6 +3,7 @@ package com.milosgarunovic.dashboard.service
 import com.milosgarunovic.dashboard.api.WeightRequest
 import com.milosgarunovic.dashboard.api.WeightResponse
 import com.milosgarunovic.dashboard.api.toWeight
+import com.milosgarunovic.dashboard.domain.toWeightResponse
 import com.milosgarunovic.dashboard.repository.WeightRepository
 import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -20,16 +21,12 @@ class WeightService(
         val user = userService.getById(userId)
         weightRepository.save(weightRequest.toWeight(user))
 
-        return weightRepository.findAll().map {
-            WeightResponse(it.id, it.value, it.dateCreated, it.unit)
-        }
+        return weightRepository.findAll().map { it.toWeightResponse() }
     }
 
     fun get(): List<WeightResponse> {
         val userAuth = SecurityContextHolder.getContext().authentication as UsernamePasswordAuthentication
-        return weightRepository.findAll().map {
-            WeightResponse(it.id, it.value, it.dateCreated, it.unit)
-        }
+        return weightRepository.findAll().map { it.toWeightResponse() }
     }
 
 
