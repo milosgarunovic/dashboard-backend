@@ -13,7 +13,7 @@ open class WeightRequest(
     val unit: WeightUnit = WeightUnit.KG,
 )
 
-fun WeightRequest.toWeight(user: User) = Weight(UUID.randomUUID(), /*user,*/ value, date, unit)
+fun WeightRequest.toWeight(user: User) = Weight(UUID.randomUUID(), user, value, date, unit)
 
 class WeightUpdateRequest(
     val id: UUID,

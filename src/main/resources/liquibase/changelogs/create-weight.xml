@@ -12,9 +12,9 @@
             <column name="id" type="uuid">
                 <constraints primaryKey="true"/>
             </column>
-            <!--            <column name="user_id" type="uuid">-->
-            <!--                <constraints nullable="false"/>-->
-            <!--            </column>-->
+            <column name="user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
             <column name="value" type="numeric(4, 1)">
                 <constraints nullable="false"/>
             </column>
@@ -22,14 +22,14 @@
                 <constraints nullable="false"/>
             </column>
             <column name="unit" type="text">
-                <constraints checkConstraint="'KG', 'LBS'"/>
+                <constraints checkConstraint="'KG', 'LBS'" nullable="false"/>
             </column>
         </createTable>
 
-        <!--        <addForeignKeyConstraint baseTableName="weights"-->
-        <!--                                 baseColumnNames="user_id"-->
-        <!--                                 constraintName="fk_weight_user_id"-->
-        <!--                                 referencedTableName="users"-->
-        <!--                                 referencedColumnNames="id"/>-->
+        <addForeignKeyConstraint baseTableName="weights"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_weight_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>

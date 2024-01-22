@@ -4,17 +4,22 @@ import com.milosgarunovic.dashboard.api.WeightResponse
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.Id
+import javax.persistence.*
 
-@Entity(name = "weights")
+@Entity
+@Table(name = "weights")
 class Weight(
-    @Id val id: UUID = UUID.randomUUID(),
-//    val user: User,
+    @Id
+    val id: UUID = UUID.randomUUID(),
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    val user: User,
+
     val value: Double, // limit to some values and maximum of 1 decimal
+
     val dateCreated: OffsetDateTime = OffsetDateTime.now(),
+
     @Enumerated(EnumType.STRING)
     val unit: WeightUnit = WeightUnit.KG,
 )
