@@ -21,13 +21,12 @@ class WeightService(
         val user = userService.getById(userId)
         weightRepository.save(weightRequest.toWeight(user))
 
-        return weightRepository.findAll().map { it.toWeightResponse() }
+        return weightRepository.findAllByUserIdOrderByDateCreatedDesc(userId).map { it.toWeightResponse() }
     }
 
     fun get(): List<WeightResponse> {
         val userAuth = SecurityContextHolder.getContext().authentication as UsernamePasswordAuthentication
-        return weightRepository.findAll().map { it.toWeightResponse() }
+        return weightRepository.findAllByUserIdOrderByDateCreatedDesc(userAuth.id).map { it.toWeightResponse() }
     }
-
 
 }

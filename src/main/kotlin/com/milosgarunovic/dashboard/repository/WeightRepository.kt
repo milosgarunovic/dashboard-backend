@@ -6,4 +6,6 @@ import java.util.*
 
 interface WeightRepository : CrudRepository<Weight, UUID> {
 
+    fun findAllByUserIdOrderByDateCreatedDesc(userId: UUID): List<Weight>
+
 }
