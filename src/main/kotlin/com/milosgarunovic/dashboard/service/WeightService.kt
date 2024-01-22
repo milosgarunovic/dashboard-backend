@@ -8,6 +8,7 @@ import com.milosgarunovic.dashboard.repository.WeightRepository
 import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 class WeightService(
@@ -27,6 +28,11 @@ class WeightService(
     fun get(): List<WeightResponse> {
         val userAuth = SecurityContextHolder.getContext().authentication as UsernamePasswordAuthentication
         return weightRepository.findAllByUserIdOrderByDateCreatedDesc(userAuth.id).map { it.toWeightResponse() }
+    }
+
+    fun delete(id: UUID) {
+        val userAuth = SecurityContextHolder.getContext().authentication as UsernamePasswordAuthentication
+        weightRepository.deleteByIdAndUserId(id, userAuth.id)
     }
 
 }

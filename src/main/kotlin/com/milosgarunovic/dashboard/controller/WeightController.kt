@@ -30,7 +30,7 @@ class WeightController(
     @DeleteMapping(path = ["/{id}"])
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: UUID) {
-
+        weightService.delete(id)
     }
 
     @GetMapping
