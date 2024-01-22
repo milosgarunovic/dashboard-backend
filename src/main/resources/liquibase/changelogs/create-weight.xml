@@ -21,10 +21,13 @@
             <column name="date_created" type="timestamptz">
                 <constraints nullable="false"/>
             </column>
-            <column name="unit" type="text">
-                <constraints checkConstraint="'KG', 'LBS'" nullable="false"/>
-            </column>
+            <column name="unit" type="text"/>
         </createTable>
+
+        <sql>
+            ALTER TABLE weights
+                ADD CONSTRAINT unit_check CHECK (unit IN ('KG', 'LBS'));
+        </sql>
 
         <addForeignKeyConstraint baseTableName="weights"
                                  baseColumnNames="user_id"
