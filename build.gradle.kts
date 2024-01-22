@@ -4,9 +4,9 @@ plugins {
     id("org.springframework.boot") version "2.6.6"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
-    kotlin("jvm") version "1.8.10"
-    kotlin("plugin.spring") version "1.8.10"
-    kotlin("plugin.jpa") version "1.8.10" // kotlin plugin for no args constructor for jpa
+    kotlin("jvm") version "1.9.22"
+    kotlin("plugin.spring") version "1.9.22"
+    kotlin("plugin.jpa") version "1.9.22" // kotlin plugin for no args constructor for jpa
 
     // shadow jar for fat jar and simple execution
     id("com.github.johnrengelman.shadow") version "7.1.2"
