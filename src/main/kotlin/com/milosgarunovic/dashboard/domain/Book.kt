@@ -1,6 +1,7 @@
 package com.milosgarunovic.dashboard.domain
 
 import com.milosgarunovic.dashboard.domain.BookStatus.NOT_READ
+import kotlinx.datetime.LocalDateTime
 
 class Book(
     val title: String,
@@ -17,3 +18,15 @@ class Book(
     val starred: Boolean = false, // like a bookmark
     // TODO tags and list of books, like user defined categories
 ) : BaseEntity()
+
+class BookBorrowed(
+    val borrowed: Boolean = false,
+    val borrowedDate: LocalDateTime? = null,
+    val borrowedTo: String?,
+)
+
+enum class BookStatus {
+    NOT_READ,
+    IN_PROGRESS,
+    READ,
+}

@@ -2,8 +2,7 @@
    1.1. validate everything (user registration duplicate username for example)
 2. add hibernate
 3. add roles text array field for each user and use roles for role based authorization
-4. migrate to Spring WebFlux (with coroutines)
-5. customize liquibase
+4. customize liquibase
    how to run liquibase if there are multiple instances of a server?
 
 https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
@@ -110,10 +109,6 @@ that relative to my time (+ / - from my time)
 
 ---
 
-how to save req/res for local testing, because everything should be inside the project. Maybe like a postman collection?
-
-add integration tests as well as unit tests (testcontainers...)
-
 add klint, qodona, docker, test coverage percentage
 
 ---
@@ -127,5 +122,4 @@ same for weather - so I can have a dashboard with weather and air pollution
 ---
 
 [ ] IN PROGRESS - pomeriti auth stvari u auth.jwt paket i napisati testove za to, mozda cak i na nivou http servera
-[ ] dodati users tabelu i vezati note-ove za njega
 [ ] smisliti kako raditi migracije (po potrebi) i kako ih pokretati najbolje
