@@ -18,8 +18,8 @@ fun WeightRequest.toWeight(user: User) = Weight(UUID.randomUUID(), user, value, 
 class WeightUpdateRequest(
     val id: UUID,
     value: Double,
-    date: OffsetDateTime = OffsetDateTime.now(),
-    unit: WeightUnit = WeightUnit.KG,
+    date: OffsetDateTime,
+    unit: WeightUnit,
 ) : WeightRequest(value, date, unit)
 
 class WeightResponse(

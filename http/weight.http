@@ -14,3 +14,15 @@ Authorization: Bearer {{ auth_token }}
 ### delete weight
 DELETE localhost:8080/weight/{{ weight_to_delete_id }}
 Authorization: Bearer {{ auth_token }}
+
+### update weight
+PATCH localhost:8080/weight
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+{
+  "id": "86c5e20b-f9e6-4333-a087-530ce7acdaae",
+  "value": 76,
+  "date": "2024-01-23T11:05:19.700868Z",
+  "unit": "KG"
+}

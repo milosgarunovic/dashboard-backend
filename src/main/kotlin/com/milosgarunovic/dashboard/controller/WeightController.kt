@@ -23,8 +23,8 @@ class WeightController(
 
     @PatchMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseStatus(HttpStatus.OK)
-    fun update(@RequestBody weightUpdateRequest: WeightUpdateRequest) {
-
+    fun update(@RequestBody weightUpdateRequest: WeightUpdateRequest): List<WeightResponse> {
+        return weightService.update(weightUpdateRequest)
     }
 
     @DeleteMapping(path = ["/{id}"])
