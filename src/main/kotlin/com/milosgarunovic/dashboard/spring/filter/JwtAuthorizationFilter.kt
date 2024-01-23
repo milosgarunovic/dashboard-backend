@@ -1,8 +1,10 @@
 package com.milosgarunovic.dashboard.spring.filter
 
+import com.milosgarunovic.dashboard.domain.Email
 import com.milosgarunovic.dashboard.service.UserService
 import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthentication
 import com.milosgarunovic.dashboard.spring.security.JwtSupport
+import io.jsonwebtoken.ExpiredJwtException
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.context.SecurityContextHolder
@@ -27,7 +29,16 @@ class JwtAuthorizationFilter(
         val bearer = "Bearer "
         if (header != null && header.startsWith(bearer)) {
             val token = header.substring(bearer.length)
-            val email = jwtSupport.getEmailFromAccessToken(token)
+            val email: Email
+            try {
+                email = jwtSupport.getEmailFromAccessToken(token)
+            } catch (e: ExpiredJwtException) {
+                response.sendError(HttpStatus.UNAUTHORIZED.value(), "Bearer token expired.")
+                return
+            } catch (e: Exception) {
+                response.sendError(HttpStatus.UNAUTHORIZED.value(), "Bearer token issue.")
+                return
+            }
             val user = userService.getByEmail(email)
             if (user == null) {
                 response.sendError(HttpStatus.UNAUTHORIZED.value(), "Bearer token issue.")
