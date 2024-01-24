@@ -16,3 +16,8 @@ Content-Type: application/json
 ### refreshToken
 GET http://localhost:8080/refreshToken
 Authorization: Bearer {{ refresh_token }}
+
+> {%
+    // saves in a global object, this is not stored in files, just in memory I guess.
+    client.global.set("auth_token", response.body.accessToken)
+%}

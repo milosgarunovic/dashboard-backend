@@ -12,6 +12,9 @@ import java.util.*
 
 interface WeightRepository : CrudRepository<Weight, UUID> {
 
+    // TODO add limit to for example 100, that's around 3 months worth of data if users measure weight once per day. Or
+    //  maybe select just last 3 months, and return any number of records. I'll probably have filter for how many months
+    //  to select.
     fun findAllByUserIdOrderByDateCreatedDesc(userId: UUID): List<Weight>
 
     @Transactional
