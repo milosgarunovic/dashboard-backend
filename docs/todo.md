@@ -123,3 +123,8 @@ same for weather - so I can have a dashboard with weather and air pollution
 
 [ ] IN PROGRESS - pomeriti auth stvari u auth.jwt paket i napisati testove za to, mozda cak i na nivou http servera
 [ ] smisliti kako raditi migracije (po potrebi) i kako ih pokretati najbolje
+
+---
+
+Music part, add songs I'm playing, wishlist (something like for books as well). So I can have all the songs and
+everything in one place.

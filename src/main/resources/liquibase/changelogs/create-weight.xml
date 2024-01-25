@@ -27,6 +27,9 @@
         <sql>
             ALTER TABLE weights
                 ADD CONSTRAINT unit_check CHECK (unit IN ('KG', 'LBS'));
+
+            ALTER TABLE weights
+                ADD CONSTRAINT value_check CHECK (value BETWEEN 0 AND 200)
         </sql>
 
         <addForeignKeyConstraint baseTableName="weights"
