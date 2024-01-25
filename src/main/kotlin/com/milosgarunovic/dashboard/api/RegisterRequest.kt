@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.api
 
-import com.milosgarunovic.dashboard.domain.Email
+import com.milosgarunovic.dashboard.domain.`typealias`.Email
 import javax.validation.constraints.Size
 
 class RegisterRequest(

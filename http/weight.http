@@ -21,8 +21,8 @@ Content-Type: application/json
 Authorization: Bearer {{ auth_token }}
 
 {
-  "id": "86c5e20b-f9e6-4333-a087-530ce7acdaae",
-  "value": 76,
-  "date": "2024-01-23T11:05:19.700868Z",
+  "id": 538335745972301266,
+  "value": 75.5,
+  "date": "2024-01-25T12:34:03.631839Z",
   "unit": "KG"
 }

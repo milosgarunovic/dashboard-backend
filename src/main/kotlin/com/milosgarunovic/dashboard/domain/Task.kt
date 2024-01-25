@@ -1,13 +1,17 @@
 package com.milosgarunovic.dashboard.domain
 
 import com.milosgarunovic.dashboard.api.TaskResponse
-import com.milosgarunovic.dashboard.util.IdGenerator
+import org.hibernate.annotations.GenericGenerator
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity(name = "tasks")
 data class Task(
-    @Id var id: Long = IdGenerator.longId(),
+    @Id
+    @GeneratedValue(generator = "tsid")
+    @GenericGenerator(name = "tsid", strategy = "io.hypersistence.utils.hibernate.id.TsidGenerator")
+    var id: Long,
     var name: String,
     var description: String? = null,
     var completed: Boolean = false,

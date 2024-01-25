@@ -1,7 +1,7 @@
 package com.milosgarunovic.dashboard.repository
 
-import com.milosgarunovic.dashboard.domain.Email
 import com.milosgarunovic.dashboard.domain.User
+import com.milosgarunovic.dashboard.domain.`typealias`.Email
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Component
 

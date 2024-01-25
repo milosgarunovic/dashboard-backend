@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.spring.filter
 
-import com.milosgarunovic.dashboard.domain.Email
+import com.milosgarunovic.dashboard.domain.`typealias`.Email
 import com.milosgarunovic.dashboard.service.UserService
 import com.milosgarunovic.dashboard.spring.UsernamePasswordAuthentication
 import com.milosgarunovic.dashboard.spring.security.JwtSupport

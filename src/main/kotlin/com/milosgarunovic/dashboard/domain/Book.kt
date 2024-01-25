@@ -1,6 +1,7 @@
 package com.milosgarunovic.dashboard.domain
 
 import com.milosgarunovic.dashboard.domain.BookStatus.NOT_READ
+import com.milosgarunovic.dashboard.domain.`typealias`.Markdown
 import kotlinx.datetime.LocalDateTime
 
 class Book(
@@ -17,7 +18,7 @@ class Book(
     val publishingYear: Int? = null,
     val starred: Boolean = false, // like a bookmark
     // TODO tags and list of books, like user defined categories
-) : BaseEntity()
+) /*: BaseEntity()*/
 
 class BookBorrowed(
     val borrowed: Boolean = false,

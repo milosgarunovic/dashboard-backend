@@ -1,6 +1,6 @@
 package com.milosgarunovic.dashboard.spring.security
 
-import com.milosgarunovic.dashboard.domain.Email
+import com.milosgarunovic.dashboard.domain.`typealias`.Email
 import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys

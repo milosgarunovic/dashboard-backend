@@ -44,7 +44,7 @@ dependencies {
     implementation("org.hibernate:hibernate-core:5.6.15.Final")
     implementation("org.hibernate:hibernate-entitymanager:5.6.15.Final")
     implementation("io.hypersistence:hypersistence-tsid:2.1.0")
-
+    implementation("io.hypersistence:hypersistence-utils-hibernate-55:3.2.0")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

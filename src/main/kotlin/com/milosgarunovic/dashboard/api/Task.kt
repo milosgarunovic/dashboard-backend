@@ -1,6 +1,7 @@
 package com.milosgarunovic.dashboard.api
 
 import com.milosgarunovic.dashboard.domain.Task
+import com.milosgarunovic.dashboard.util.IdGenerator
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
@@ -10,7 +11,7 @@ class TaskAddRequest(
     val description: String?,
 )
 
-fun TaskAddRequest.toTask() = Task(name = name, description = description)
+fun TaskAddRequest.toTask() = Task(IdGenerator.longId(), name, description)
 
 data class TaskResponse(
     val id: Long,

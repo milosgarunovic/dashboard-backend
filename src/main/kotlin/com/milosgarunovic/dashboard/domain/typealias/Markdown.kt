@@ -1,4 +1,4 @@
-package com.milosgarunovic.dashboard.domain
+package com.milosgarunovic.dashboard.domain.`typealias`
 
 /**
  * Corresponds to a markdown formatted string. This typealias will have methods for working with Markdown. And it's

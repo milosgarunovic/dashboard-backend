@@ -1,7 +1,7 @@
 package com.milosgarunovic.dashboard.domain
 
 import com.milosgarunovic.dashboard.api.WeightResponse
-import com.milosgarunovic.dashboard.util.IdGenerator
+import org.hibernate.annotations.GenericGenerator
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import javax.persistence.*
@@ -10,7 +10,9 @@ import javax.persistence.*
 @Table(name = "weights")
 class Weight(
     @Id
-    val id: Long = IdGenerator.longId(),
+    @GeneratedValue(generator = "tsid")
+    @GenericGenerator(name = "tsid", strategy = "io.hypersistence.utils.hibernate.id.TsidGenerator")
+    val id: Long,
 
     @ManyToOne
     @JoinColumn(name = "user_id")
