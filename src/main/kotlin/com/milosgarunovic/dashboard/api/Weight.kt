@@ -1,5 +1,6 @@
 package com.milosgarunovic.dashboard.api
 
+import com.milosgarunovic.dashboard.api.validation.Result
 import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.domain.Weight
 import com.milosgarunovic.dashboard.domain.WeightUnit
@@ -8,19 +9,67 @@ import java.time.ZonedDateTime
 import java.util.*
 
 open class WeightRequest(
-    val value: Double, // TODO validation, positive, maximum of ?
-    val date: OffsetDateTime = OffsetDateTime.now(), // TODO validation not in future
+    val value: Double?,
+    val date: OffsetDateTime = OffsetDateTime.now(),
     val unit: WeightUnit = WeightUnit.KG,
-)
+) {
+    open fun validate(): Result<WeightRequest> {
+        val message = StringBuilder()
+        commonValidation(message)
 
-fun WeightRequest.toWeight(user: User) = Weight(UUID.randomUUID(), user, value, date, unit)
+        return if (message.isEmpty()) {
+            Result.Success(this)
+        } else {
+            Result.Failure(message.toString().trim())
+        }
+    }
+
+    /**
+     * appends to existing string builder validation messages
+     */
+    open fun commonValidation(message: StringBuilder) {
+        if (value == null) {
+            message.appendLine("value can't be null")
+        } else if (value < 0) {
+            message.appendLine("value can't be negative")
+        } else if (value > 200) {
+            message.appendLine("maximum value is 200")
+        }
+
+        if (date > OffsetDateTime.now()) {
+            message.appendLine("date can't be in future")
+        }
+    }
+
+    fun toWeight(user: User): Weight {
+        return Weight(UUID.randomUUID(), user, value!!, date, unit)
+    }
+}
+
 
 class WeightUpdateRequest(
-    val id: UUID,
+    val id: UUID?,
     value: Double,
     date: OffsetDateTime,
     unit: WeightUnit,
-) : WeightRequest(value, date, unit)
+) : WeightRequest(value, date, unit) {
+
+    override fun validate(): Result<WeightUpdateRequest> {
+        val message = StringBuilder()
+
+        if (id == null) {
+            message.appendLine("id can't be null")
+        }
+
+        commonValidation(message)
+
+        return if (message.isEmpty()) {
+            Result.Success(this)
+        } else {
+            Result.Failure(message.toString().trim())
+        }
+    }
+}
 
 class WeightResponse(
     val id: UUID,

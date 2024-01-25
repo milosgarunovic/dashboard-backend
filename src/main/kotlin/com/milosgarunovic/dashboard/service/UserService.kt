@@ -3,8 +3,8 @@ package com.milosgarunovic.dashboard.service
 import com.milosgarunovic.dashboard.domain.Email
 import com.milosgarunovic.dashboard.domain.Password
 import com.milosgarunovic.dashboard.domain.User
-import com.milosgarunovic.dashboard.exception.ResourceAlreadyExistsException
 import com.milosgarunovic.dashboard.repository.UserRepository
+import com.milosgarunovic.dashboard.spring.exception.ResourceAlreadyExistsException
 import org.springframework.context.annotation.Lazy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component

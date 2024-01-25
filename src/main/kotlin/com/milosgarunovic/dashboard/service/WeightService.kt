@@ -3,7 +3,6 @@ package com.milosgarunovic.dashboard.service
 import com.milosgarunovic.dashboard.api.WeightRequest
 import com.milosgarunovic.dashboard.api.WeightResponse
 import com.milosgarunovic.dashboard.api.WeightUpdateRequest
-import com.milosgarunovic.dashboard.api.toWeight
 import com.milosgarunovic.dashboard.domain.toWeightResponse
 import com.milosgarunovic.dashboard.repository.WeightRepository
 import com.milosgarunovic.dashboard.spring.util.SecurityContextHolderUtil
@@ -22,7 +21,7 @@ class WeightService(
         val user = userService.getById(userId)
         weightRepository.save(weightRequest.toWeight(user))
 
-        return get(userAuth.id)
+        return get(userId)
     }
 
     fun get(userId: UUID): List<WeightResponse> {
@@ -30,20 +29,19 @@ class WeightService(
     }
 
     fun get(): List<WeightResponse> {
-        val userAuth = SecurityContextHolderUtil.getAuth()
-        return get(userAuth.id)
+        return get(SecurityContextHolderUtil.getUserId())
     }
 
     fun delete(id: UUID) {
-        val userAuth = SecurityContextHolderUtil.getAuth()
-        weightRepository.deleteByIdAndUserId(id, userAuth.id)
+        weightRepository.deleteByIdAndUserId(id, SecurityContextHolderUtil.getUserId())
     }
 
     fun update(weight: WeightUpdateRequest): List<WeightResponse> {
-        val userAuth = SecurityContextHolderUtil.getAuth()
-        weightRepository.update(weight.value, weight.unit, weight.date, userAuth.id, weight.id)
+        val userId = SecurityContextHolderUtil.getUserId()
 
-        return get(userAuth.id)
+        weightRepository.update(weight.value!!, weight.unit, weight.date, userId, weight.id!!)
+
+        return get(userId)
     }
 
 }
