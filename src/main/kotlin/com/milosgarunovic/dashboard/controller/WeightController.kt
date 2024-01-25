@@ -8,7 +8,6 @@ import com.milosgarunovic.dashboard.service.WeightService
 import com.milosgarunovic.dashboard.spring.exception.BadRequestException
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -19,11 +18,10 @@ class WeightController(
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseStatus(HttpStatus.CREATED)
-    fun add(@RequestBody weightRequest: WeightRequest): ResponseEntity<List<WeightResponse>> {
+    fun add(@RequestBody weightRequest: WeightRequest): List<WeightResponse> {
         weightRequest.validate().onFailure { throw BadRequestException(it) }
 
-        val weights = weightService.add(weightRequest)
-        return ResponseEntity.status(HttpStatus.CREATED).body(weights)
+        return weightService.add(weightRequest)
     }
 
     @PatchMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
