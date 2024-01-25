@@ -7,7 +7,6 @@ import com.milosgarunovic.dashboard.api.toTask
 import com.milosgarunovic.dashboard.domain.toTaskResponse
 import com.milosgarunovic.dashboard.repository.TaskRepository
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class TaskService(
@@ -18,7 +17,7 @@ class TaskService(
         return taskRepository.findAll().map { it.toTaskResponse() }
     }
 
-    fun getById(id: UUID): TaskResponse? {
+    fun getById(id: Long): TaskResponse? {
         val task = taskRepository.getTaskById(id)
         if (task != null) {
             return task.toTaskResponse()
@@ -34,11 +33,11 @@ class TaskService(
         return taskRepository.save(taskUpdateRequest.toTask()).toTaskResponse()
     }
 
-    fun delete(id: UUID) {
+    fun delete(id: Long) {
         taskRepository.deleteById(id)
     }
 
-    fun complete(id: UUID) {
+    fun complete(id: Long) {
         taskRepository.complete(id)
     }
 }

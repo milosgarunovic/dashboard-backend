@@ -7,7 +7,6 @@ import com.milosgarunovic.dashboard.domain.toWeightResponse
 import com.milosgarunovic.dashboard.repository.WeightRepository
 import com.milosgarunovic.dashboard.spring.util.SecurityContextHolderUtil
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class WeightService(
@@ -24,7 +23,7 @@ class WeightService(
         return get(userId)
     }
 
-    fun get(userId: UUID): List<WeightResponse> {
+    fun get(userId: Long): List<WeightResponse> {
         return weightRepository.findAllByUserIdOrderByDateCreatedDesc(userId).map { it.toWeightResponse() }
     }
 
@@ -32,7 +31,7 @@ class WeightService(
         return get(SecurityContextHolderUtil.getUserId())
     }
 
-    fun delete(id: UUID) {
+    fun delete(id: Long) {
         weightRepository.deleteByIdAndUserId(id, SecurityContextHolderUtil.getUserId())
     }
 

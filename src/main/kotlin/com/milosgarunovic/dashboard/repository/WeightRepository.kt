@@ -8,17 +8,16 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 import org.springframework.transaction.annotation.Transactional
 import java.time.OffsetDateTime
-import java.util.*
 
-interface WeightRepository : CrudRepository<Weight, UUID> {
+interface WeightRepository : CrudRepository<Weight, Long> {
 
     // TODO add limit to for example 100, that's around 3 months worth of data if users measure weight once per day. Or
     //  maybe select just last 3 months, and return any number of records. I'll probably have filter for how many months
     //  to select.
-    fun findAllByUserIdOrderByDateCreatedDesc(userId: UUID): List<Weight>
+    fun findAllByUserIdOrderByDateCreatedDesc(userId: Long): List<Weight>
 
     @Transactional
-    fun deleteByIdAndUserId(id: UUID, userId: UUID)
+    fun deleteByIdAndUserId(id: Long, userId: Long)
 
     @Transactional
     @Modifying
@@ -27,7 +26,7 @@ interface WeightRepository : CrudRepository<Weight, UUID> {
         @Param("value") value: Double,
         @Param("unit") unit: WeightUnit,
         @Param("dateCreated") dateCreated: OffsetDateTime,
-        @Param("userId") userId: UUID,
-        @Param("id") id: UUID
+        @Param("userId") userId: Long,
+        @Param("id") id: Long
     )
 }

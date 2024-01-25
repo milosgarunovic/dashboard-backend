@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("/weight")
@@ -36,7 +35,7 @@ class WeightController(
 
     @DeleteMapping(path = ["/{id}"])
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: UUID) {
+    fun delete(@PathVariable id: Long) {
         weightService.delete(id)
     }
 

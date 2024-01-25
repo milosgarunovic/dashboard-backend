@@ -4,9 +4,9 @@ import com.milosgarunovic.dashboard.api.validation.Result
 import com.milosgarunovic.dashboard.domain.User
 import com.milosgarunovic.dashboard.domain.Weight
 import com.milosgarunovic.dashboard.domain.WeightUnit
+import com.milosgarunovic.dashboard.util.IdGenerator
 import java.time.OffsetDateTime
 import java.time.ZonedDateTime
-import java.util.*
 
 open class WeightRequest(
     val value: Double?,
@@ -42,13 +42,13 @@ open class WeightRequest(
     }
 
     fun toWeight(user: User): Weight {
-        return Weight(UUID.randomUUID(), user, value!!, date, unit)
+        return Weight(IdGenerator.longId(), user, value!!, date, unit)
     }
 }
 
 
 class WeightUpdateRequest(
-    val id: UUID?,
+    val id: Long?,
     value: Double,
     date: OffsetDateTime,
     unit: WeightUnit,
@@ -72,7 +72,7 @@ class WeightUpdateRequest(
 }
 
 class WeightResponse(
-    val id: UUID,
+    val id: Long,
     val value: Double,
     val date: ZonedDateTime, // UTC always response, let users convert
     val unit: WeightUnit,

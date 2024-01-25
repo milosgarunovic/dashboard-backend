@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.*
 import javax.validation.Valid
 
 @RestController
@@ -22,7 +21,7 @@ class TaskController(val taskService: TaskService) {
     }
 
     @GetMapping("/{id}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getById(@PathVariable id: UUID): ResponseEntity<TaskResponse> {
+    fun getById(@PathVariable id: Long): ResponseEntity<TaskResponse> {
         val task = taskService.getById(id)
         if (task != null) {
             return ResponseEntity(task, HttpStatus.OK)
@@ -44,13 +43,13 @@ class TaskController(val taskService: TaskService) {
 
     @DeleteMapping("/{id}", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: UUID) {
+    fun delete(@PathVariable id: Long) {
         taskService.delete(id)
     }
 
     @PostMapping("/complete/{id}", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ResponseStatus(HttpStatus.OK)
-    fun complete(@PathVariable id: UUID) {
+    fun complete(@PathVariable id: Long) {
         taskService.complete(id)
     }
 }

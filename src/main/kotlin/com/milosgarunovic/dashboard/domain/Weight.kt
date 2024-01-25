@@ -1,16 +1,16 @@
 package com.milosgarunovic.dashboard.domain
 
 import com.milosgarunovic.dashboard.api.WeightResponse
+import com.milosgarunovic.dashboard.util.IdGenerator
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "weights")
 class Weight(
     @Id
-    val id: UUID = UUID.randomUUID(),
+    val id: Long = IdGenerator.longId(),
 
     @ManyToOne
     @JoinColumn(name = "user_id")

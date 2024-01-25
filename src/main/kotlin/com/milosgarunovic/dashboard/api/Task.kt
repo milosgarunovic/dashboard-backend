@@ -1,7 +1,6 @@
 package com.milosgarunovic.dashboard.api
 
 import com.milosgarunovic.dashboard.domain.Task
-import java.util.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
@@ -14,7 +13,7 @@ class TaskAddRequest(
 fun TaskAddRequest.toTask() = Task(name = name, description = description)
 
 data class TaskResponse(
-    val id: UUID,
+    val id: Long,
     val name: String,
     val description: String?,
     val completed: Boolean,
@@ -22,7 +21,7 @@ data class TaskResponse(
 
 class TaskUpdateRequest(
     @field:Size(min = 36, max = 36)
-    val id: UUID,
+    val id: Long,
     @field:NotBlank
     val name: String,
     val description: String? = null,

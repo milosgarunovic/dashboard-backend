@@ -8,7 +8,6 @@ import com.milosgarunovic.dashboard.spring.exception.ResourceAlreadyExistsExcept
 import org.springframework.context.annotation.Lazy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class UserService(
@@ -28,7 +27,7 @@ class UserService(
         return userRepository.getUserByEmail(email)
     }
 
-    fun getById(id: UUID): User {
+    fun getById(id: Long): User {
         return userRepository.findById(id).get()
     }
 
