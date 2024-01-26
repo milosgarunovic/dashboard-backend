@@ -1,5 +1,6 @@
 package com.milosgarunovic.dashboard.spring.filter
 
+import io.hypersistence.tsid.TSID
 import kotlinx.datetime.Clock
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AnonymousAuthenticationToken
@@ -8,7 +9,6 @@ import org.springframework.web.filter.OncePerRequestFilter
 import org.springframework.web.util.ContentCachingRequestWrapper
 import org.springframework.web.util.ContentCachingResponseWrapper
 import java.io.UnsupportedEncodingException
-import java.util.*
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -25,7 +25,7 @@ open class CustomLoggingReqResFilter : OncePerRequestFilter() {
 
         val contentCachingRequestWrapper = wrapRequest(request)
         val contentCachingResponseWrapper = wrapResponse(response)
-        val reqId = UUID.randomUUID().toString()
+        val reqId = TSID.fast().toLong()
         val uri = request.requestURL
         val method = request.method
 
