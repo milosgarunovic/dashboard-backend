@@ -40,11 +40,11 @@ dependencies {
     // database
     implementation("org.liquibase:liquibase-core:4.25.1")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
-
     implementation("org.hibernate:hibernate-core:5.6.15.Final")
     implementation("org.hibernate:hibernate-entitymanager:5.6.15.Final")
     implementation("io.hypersistence:hypersistence-tsid:2.1.0")
     implementation("io.hypersistence:hypersistence-utils-hibernate-55:3.2.0")
+    implementation("net.ttddyy:datasource-proxy:1.10")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
