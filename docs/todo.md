@@ -128,3 +128,7 @@ same for weather - so I can have a dashboard with weather and air pollution
 
 Music part, add songs I'm playing, wishlist (something like for books as well). So I can have all the songs and
 everything in one place.
+
+---
+
+[ ] Add tests for weight

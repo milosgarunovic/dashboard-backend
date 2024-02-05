@@ -45,6 +45,7 @@ class JwtSupport(
     private fun generate(username: String, expiration: Date, secretKey: SecretKey): String {
         return Jwts.builder()
             .setSubject(username)
+            // TODO use date from java.time package, so maybe replace this with a string
             .setIssuedAt(Date.from(Instant.now()))
             .setExpiration(expiration)
             .signWith(secretKey)
