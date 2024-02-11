@@ -15,8 +15,7 @@ class Quote(
 
     val quote: Markdown, // this is the quote itself
 
-    @Transient
-    val author: List<Author>? = null,
+    val authors: String? = null, // stored as CSV, to be as simple as possible
 
     val note: Markdown? = null, // any note, thoughts about the quote or similar
 
@@ -27,6 +26,6 @@ class Quote(
     val user: User,
 ) {
     fun toQuoteResponse(): QuoteResponse {
-        return QuoteResponse(id, quote, note, source)
+        return QuoteResponse(id, quote, note, source, authors?.split(","))
     }
 }

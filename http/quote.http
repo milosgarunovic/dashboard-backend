@@ -5,7 +5,13 @@ Content-Type: application/json
 Authorization: Bearer {{ auth_token }}
 
 {
-  "quote": "Humans are allergic to change. They love to say, \"We've always done it this way.\" I try to fight that. That's why I have a clock on my wall that runs counterclockwise."
+  "quote": "Humans are allergic to change. They love to say, \"We've always done it this way.\" I try to fight that. That's why I have a clock on my wall that runs counterclockwise.",
+  "note": "interesting idea to think about",
+  "source": "internet, idk where I got it",
+  "authors": [
+    "No name",
+    "Anonymoos"
+  ]
 }
 
 ### delete quote

@@ -6,7 +6,7 @@ import kotlinx.datetime.LocalDateTime
 
 class Book(
     val title: String,
-    val author: List<Author>? = null, // many books can have the same author
+    val authors: List<String>? = null, // many books can have the same author
     val status: BookStatus = NOT_READ,
     val own: Boolean = false, // does a user own a book, or it's in something like a wishlist
     val format: List<String>? = null, // list of formats like Paperback, pdf, epub, amazon/kindle

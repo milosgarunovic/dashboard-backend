@@ -8,14 +8,15 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
             <column name="quote" type="text">
                 <constraints nullable="false"/>
             </column>
+            <column name="authors" type="text"/>
             <column name="note" type="text"/>
             <column name="source" type="text"/>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <addForeignKeyConstraint baseTableName="quotes"
