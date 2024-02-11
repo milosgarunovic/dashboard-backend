@@ -22,3 +22,19 @@ Authorization: Bearer {{ auth_token }}
 ### get all quotes
 GET localhost:8080/quotes
 Authorization: Bearer {{ auth_token }}
+
+### update post
+PATCH localhost:8080/quotes
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+{
+  "id": 544573694116098204,
+  "quote": "Humans are allergic to change. They love to say",
+  "note": "interesting idea to think about...",
+  "source": "internet, idk where I got it...",
+  "authors": [
+    "Anonymoos",
+    "No name"
+  ]
+}

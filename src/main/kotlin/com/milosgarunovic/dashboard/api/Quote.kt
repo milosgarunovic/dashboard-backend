@@ -18,6 +18,14 @@ class QuoteRequest(
 
 }
 
+class QuoteUpdateRequest(
+    val id: Long,
+    val quote: Markdown,
+    val authors: List<String>?,
+    val note: Markdown?,
+    val source: String?,
+)
+
 class QuoteResponse(
     val id: Long,
     val quote: Markdown,
