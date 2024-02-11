@@ -3,7 +3,6 @@ package com.milosgarunovic.dashboard.service
 import com.milosgarunovic.dashboard.api.WeightRequest
 import com.milosgarunovic.dashboard.api.WeightResponse
 import com.milosgarunovic.dashboard.api.WeightUpdateRequest
-import com.milosgarunovic.dashboard.domain.toWeightResponse
 import com.milosgarunovic.dashboard.repository.WeightRepository
 import com.milosgarunovic.dashboard.spring.util.SecurityContextHolderUtil
 import org.springframework.stereotype.Component

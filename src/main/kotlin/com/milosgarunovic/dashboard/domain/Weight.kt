@@ -24,13 +24,13 @@ class Weight(
 
     @Enumerated(EnumType.STRING)
     val unit: WeightUnit = WeightUnit.KG,
-)
+) {
+    fun toWeightResponse(): WeightResponse {
+        return WeightResponse(id, value, dateCreated.atZoneSameInstant(ZoneOffset.UTC), unit)
+    }
+}
 
 enum class WeightUnit(val value: String) {
     KG("Kg"),
     LBS("lbs"),
-}
-
-fun Weight.toWeightResponse(): WeightResponse {
-    return WeightResponse(id, value, dateCreated.atZoneSameInstant(ZoneOffset.UTC), unit)
 }

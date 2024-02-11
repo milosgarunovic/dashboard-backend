@@ -1,0 +1,18 @@
+### add quote
+
+POST localhost:8080/quotes
+Content-Type: application/json
+Authorization: Bearer {{ auth_token }}
+
+{
+  "quote": "Humans are allergic to change. They love to say, \"We've always done it this way.\" I try to fight that. That's why I have a clock on my wall that runs counterclockwise."
+}
+
+### delete quote
+
+DELETE localhost:8080/quotes/{{ quote_to_delete_id }}
+Authorization: Bearer {{ auth_token }}
+
+### get all quotes
+GET localhost:8080/quotes
+Authorization: Bearer {{ auth_token }}

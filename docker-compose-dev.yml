@@ -11,5 +11,3 @@ services:
       - "POSTGRES_DB=dashboard"
       - "POSTGRES_USER=postgres"
       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
-
-# TODO gradle task to build with jib and then the same name is used here to self-host

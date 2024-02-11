@@ -1,8 +1,6 @@
-1. add unit tests and integration tests with testcontainers
-   1.1. validate everything (user registration duplicate username for example)
-2. add hibernate
-3. add roles text array field for each user and use roles for role based authorization
-4. customize liquibase
+1. add hibernate
+2. add roles text array field for each user and use roles for role based authorization
+3. customize liquibase
    how to run liquibase if there are multiple instances of a server?
 
 https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
@@ -13,10 +11,10 @@ https://owasp.org/www-community/OWASP_Validation_Regex_Repository
 
 at some later point in time
 
-1. add readme file
-2. request timeout
-3. monitoring
-4. deployment - docker (jib)
+1. deployment - docker (jib)
+2. add readme file
+3. request timeout
+4. monitoring
 5. graceful shutdown
 6. audit log (check API Security in Action 1.5.4 and chapter 3)
 7. rate limiting unauthenticated requests to prevent DoS
@@ -121,7 +119,6 @@ same for weather - so I can have a dashboard with weather and air pollution
 
 ---
 
-[ ] IN PROGRESS - pomeriti auth stvari u auth.jwt paket i napisati testove za to, mozda cak i na nivou http servera
 [ ] smisliti kako raditi migracije (po potrebi) i kako ih pokretati najbolje
 
 ---
@@ -132,3 +129,15 @@ everything in one place.
 ---
 
 [ ] Add tests for weight
+
+---
+
+nomie6 has some great ideas so pick some stuff from there
+
+also Lunatask
+
+---
+
+When I get a little more into the app, make a backup feature per user, so it can download a zip of everything he owns.
+This can help if I model the app to be "sold" for hosting, like 3-5$ per month, and users move from open source to my
+version or vice versa.
