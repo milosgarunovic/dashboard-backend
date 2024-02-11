@@ -10,7 +10,7 @@ import java.time.ZonedDateTime
 
 open class WeightRequest(
     val value: Double?,
-    val date: OffsetDateTime = OffsetDateTime.now(),
+    val date: OffsetDateTime?,
     val unit: WeightUnit = WeightUnit.KG,
 ) {
     open fun validate(): Result<WeightRequest> {
@@ -36,13 +36,17 @@ open class WeightRequest(
             message.appendLine("maximum value is 200")
         }
 
-        if (date > OffsetDateTime.now()) {
+        if (date?.isAfter(OffsetDateTime.now()) == true) {
             message.appendLine("date can't be in future")
         }
     }
 
     fun toWeight(user: User): Weight {
-        return Weight(IdGenerator.longId(), user, value!!, date, unit)
+        if (date == null) {
+            return Weight(IdGenerator.longId(), user, value!!, OffsetDateTime.now(), unit)
+        } else {
+            return Weight(IdGenerator.longId(), user, value!!, date, unit)
+        }
     }
 }
 

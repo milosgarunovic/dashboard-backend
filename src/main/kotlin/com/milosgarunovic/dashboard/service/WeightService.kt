@@ -38,7 +38,7 @@ class WeightService(
     fun update(weight: WeightUpdateRequest): List<WeightResponse> {
         val userId = SecurityContextHolderUtil.getUserId()
 
-        weightRepository.update(weight.value!!, weight.unit, weight.date, userId, weight.id!!)
+        weightRepository.update(weight.value!!, weight.unit, weight.date!!, userId, weight.id!!)
 
         return get(userId)
     }
