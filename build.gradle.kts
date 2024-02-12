@@ -74,3 +74,31 @@ tasks {
         }
     }
 }
+
+// val so we have access within the code instead of using getByName("integration")
+val integrationTest: SourceSet = sourceSets.create("integrationTest") {
+    java {
+        srcDir("src/integration/kotlin")
+        compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+    }
+    resources.srcDir("src/integration/resources")
+}
+
+configurations[integrationTest.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+configurations[integrationTest.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+
+val integrationTestTask = tasks.register<Test>("integrationTest") {
+    group = "verification"
+
+    useJUnitPlatform()
+
+    testClassesDirs = integrationTest.output.classesDirs
+    classpath = sourceSets["integrationTest"].runtimeClasspath
+
+    shouldRunAfter("test")
+}
+
+tasks.check {
+    dependsOn(integrationTestTask)
+}

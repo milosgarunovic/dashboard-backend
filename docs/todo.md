@@ -141,3 +141,9 @@ also Lunatask
 When I get a little more into the app, make a backup feature per user, so it can download a zip of everything he owns.
 This can help if I model the app to be "sold" for hosting, like 3-5$ per month, and users move from open source to my
 version or vice versa.
+
+---
+
+https://testcontainers.com/guides/testing-spring-boot-rest-api-using-testcontainers/
+
+Test containers with rest assured

@@ -34,7 +34,6 @@ class WeightControllerTests : AbstractTestContainers() {
     @Autowired
     private lateinit var jwtSupport: JwtSupport
 
-
     @Test
     fun `POST weight and expect 1 element with correct weight`() {
         val accessToken = registerUserAndGetAccessToken("weights@test.com")
