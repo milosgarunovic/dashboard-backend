@@ -75,9 +75,9 @@ tasks {
     }
 }
 
-// val so we have access within the code instead of using getByName("integration")
+// val so we have access within the code instead of using getByName("integrationTest")
 val integrationTest: SourceSet = sourceSets.create("integrationTest") {
-    java {
+    java {// TODO test with kotlin instead of java, not sure what's the difference
         srcDir("src/integration/kotlin")
         compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
         runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
